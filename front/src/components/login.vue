@@ -6,6 +6,7 @@
         <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
         <el-input type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
         <el-button type="primary" @click="login">登录</el-button>
+        <el-button type="primary" @click="register">注册</el-button>
       </el-main>
     </el-container>
   </div>
@@ -33,14 +34,27 @@ export default {
           password: that.user.password,
         },
         success: function (res) {
-            if(res.code == 0) {
-                that.$router.push({
-                    
-                })
-            }
+          if (res.code != 0) {
+            alert("登录失败!code=" + res.code);
+            return;
+          }
+          console.log(res)
+          that.$router.push({
+            name:"index",
+            params: {
+              nickname: that.user.username,
+            },
+          })
         },
       });
     },
+
+    register: function(){
+      var that = this;
+      that.$router.push({
+        path:"/register"
+      })
+    }
   },
 };
 </script>
