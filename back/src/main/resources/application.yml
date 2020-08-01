@@ -6,8 +6,8 @@ spring:
     database: mysql
   datasource:
     url: jdbc:mysql://localhost:3306/nias?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
-    username: nias
-    password: Nias123687459
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   main:

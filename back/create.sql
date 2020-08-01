@@ -1,4 +1,4 @@
-CREATE TABLE tbKPI(
+CREATE TABLE if not exists tbKPI(
   起始时间 DATETIME,
 	周期 INT,
 	网元名称 VARCHAR(255),
@@ -44,7 +44,7 @@ CREATE TABLE tbKPI(
 	PRIMARY KEY (小区名)
 	);
 
-CREATE TABLE tbPRB(
+CREATE TABLE if not exists tbPRB(
   起始时间 DATETIME,
 	周期 INT,
 	网元名称 VARCHAR(255),
@@ -153,7 +153,7 @@ CREATE TABLE tbPRB(
 	PRIMARY KEY (小区名)
 	);
 
-	CREATE TABLE tbC2I(
+	CREATE TABLE if not exists tbC2I(
   CITY VARCHAR(255),
 	SCELL VARCHAR(255),
 	NCELL VARCHAR(255),
@@ -165,7 +165,7 @@ CREATE TABLE tbPRB(
 	PRIMARY KEY (SCELL,NCELL)
 	);
 
-	CREATE TABLE tbcell(
+	CREATE TABLE if not exists tbCell(
     CITY VARCHAR(255),
 		SECTOR_ID VARCHAR(50),
 		SECTOR_NAME VARCHAR(255),
@@ -189,7 +189,7 @@ CREATE TABLE tbPRB(
 		CHECK (PCI BETWEEN 0 AND 503)
 		);
 
-  CREATE TABLE tbMROData(
+  CREATE TABLE if not exists tbMROData(
     TimeStamp VARCHAR(30),
 	ServingSector VARCHAR(50),
 	InterferingSector VARCHAR(50),
