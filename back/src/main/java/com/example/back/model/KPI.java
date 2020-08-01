@@ -10,7 +10,7 @@ public class KPI {
     private String 起始时间;
 
     @Column(name = "周期")
-    private Int 周期;
+    private Integer 周期;
 
     @Column(name = "网元名称")
     private String 网元名称;
@@ -23,28 +23,28 @@ public class KPI {
     private String 小区名;
 
     @Column(name = "RRC连接建立完成次数")
-    private Int RRC连接建立完成次数;
+    private Integer RRC连接建立完成次数;
 
     @Column(name = "RRC连接请求次数_包括重发")
-    private Int RRC连接请求次数_包括重发;
+    private Integer RRC连接请求次数_包括重发;
 
     @Column(name = "RRC建立成功率qf")
     private Float RRC建立成功率qf;
 
     @Column(name = "E_RAB建立成功总次数")
-    private Int E_RAB建立成功总次数;
+    private Integer E_RAB建立成功总次数;
 
     @Column(name = "E_RAB建立尝试总次数")
-    private Int E_RAB建立尝试总次数;
+    private Integer E_RAB建立尝试总次数;
 
     @Column(name = "E_RAB建立成功率")
     private Float E_RAB建立成功率;
 
     @Column(name = "eNodeB触发的E_RAB异常释放总次数")
-    private Int eNodeB触发的E_RAB异常释放总次数;
+    private Integer eNodeB触发的E_RAB异常释放总次数;
 
     @Column(name = "小区切换出E_RAB异常释放总次数")
-    private Int 小区切换出E_RAB异常释放总次数;
+    private Integer 小区切换出E_RAB异常释放总次数;
 
     @Column(name = "E_RAB掉线率_新")
     private Float E_RAB掉线率_新;
@@ -53,40 +53,40 @@ public class KPI {
     private Float 无线接通率ay;
 
     @Column(name = "eNodeB发起的S1_RESET导致的UE_Context释放次数")
-    private Int eNodeB发起的S1_RESET导致的UE_Context释放次数;
+    private Integer eNodeB发起的S1_RESET导致的UE_Context释放次数;
 
     @Column(name = "UE_Context异常释放次数")
-    private Int UE_Context异常释放次数;
+    private Integer UE_Context异常释放次数;
 
     @Column(name = "UE_Context建立成功总次数")
-    private Int UE_Context建立成功总次数;
+    private Integer UE_Context建立成功总次数;
 
     @Column(name = "无线掉线率")
     private Float 无线掉线率;
 
     @Column(name = "eNodeB内异频切换出成功次数")
-    private Int eNodeB内异频切换出成功次数;
+    private Integer eNodeB内异频切换出成功次数;
 
     @Column(name = "eNodeB内异频切换出尝试次数")
-    private Int eNodeB内异频切换出尝试次数;
+    private Integer eNodeB内异频切换出尝试次数;
 
     @Column(name = "eNodeB内同频切换出成功次数")
-    private Int eNodeB内同频切换出成功次数;
+    private Integer eNodeB内同频切换出成功次数;
 
     @Column(name = "eNodeB内同频切换出尝试次数")
-    private Int eNodeB内同频切换出尝试次数;
+    private Integer eNodeB内同频切换出尝试次数;
 
     @Column(name = "eNodeB间异频切换出成功次数")
-    private Int eNodeB间异频切换出成功次数;
+    private Integer eNodeB间异频切换出成功次数;
 
     @Column(name = "eNodeB间异频切换出尝试次数")
-    private Int eNodeB间异频切换出尝试次数;
+    private Integer eNodeB间异频切换出尝试次数;
 
     @Column(name = "eNodeB间同频切换出成功次数")
-    private Int eNodeB间同频切换出成功次数;
+    private Integer eNodeB间同频切换出成功次数;
 
     @Column(name = "eNodeB间同频切换出尝试次数")
-    private Int eNodeB间同频切换出尝试次数;
+    private Integer eNodeB间同频切换出尝试次数;
 
     @Column(name = "eNB内切换成功率")
     private Float eNB内切换成功率;
@@ -104,34 +104,34 @@ public class KPI {
     private Float 切换成功率;
 
     @Column(name = "小区PDCP层所接收到的上行数据的总吞吐量")
-    private Int 小区PDCP层所接收到的上行数据的总吞吐量;
+    private Integer 小区PDCP层所接收到的上行数据的总吞吐量;
 
     @Column(name = "小区PDCP层所发送的下行数据的总吞吐量")
-    private Int 小区PDCP层所发送的下行数据的总吞吐量;
+    private Integer 小区PDCP层所发送的下行数据的总吞吐量;
 
     @Column(name = "RRC重建请求次数")
-    private Int RRC重建请求次数;
+    private Integer RRC重建请求次数;
 
     @Column(name = "RRC连接重建比率")
     private Float RRC连接重建比率;
 
     @Column(name = "通过重建回源小区的eNodeB间同频切换出执行成功次数")
-    private Int 通过重建回源小区的eNodeB间同频切换出执行成功次数;
+    private Integer 通过重建回源小区的eNodeB间同频切换出执行成功次数;
 
     @Column(name = "通过重建回源小区的eNodeB间异频切换出执行成功次数")
-    private Int 通过重建回源小区的eNodeB间异频切换出执行成功次数;
+    private Integer 通过重建回源小区的eNodeB间异频切换出执行成功次数;
 
     @Column(name = "通过重建回源小区的eNodeB内同频切换出执行成功次数")
-    private Int 通过重建回源小区的eNodeB内同频切换出执行成功次数;
+    private Integer 通过重建回源小区的eNodeB内同频切换出执行成功次数;
 
     @Column(name = "通过重建回源小区的eNodeB内异频切换出执行成功次数")
-    private Int 通过重建回源小区的eNodeB内异频切换出执行成功次数;
+    private Integer 通过重建回源小区的eNodeB内异频切换出执行成功次数;
 
     @Column(name = "eNB内切换出成功次数")
-    private Int eNB内切换出成功次数;
+    private Integer eNB内切换出成功次数;
 
     @Column(name = "eNB内切换出请求次数")
-    private Int eNB内切换出请求次数;
+    private Integer eNB内切换出请求次数;
 
     @Override
     public String toString() {
@@ -189,20 +189,20 @@ public class KPI {
         this.起始时间 = 起始时间;
     }
 
+    public Integer get周期() {
+        return 周期;
+    }
+
+    public void set周期(Integer 周期) {
+        this.周期 = 周期;
+    }
+
     public String get网元名称() {
         return 网元名称;
     }
 
     public void set网元名称(String 网元名称) {
         this.网元名称 = 网元名称;
-    }
-
-    public Int get周期() {
-        return 周期;
-    }
-
-    public void set周期(Int 周期) {
-        this.周期 = 周期;
     }
 
     public String get小区() {
@@ -221,19 +221,19 @@ public class KPI {
         this.小区名 = 小区名;
     }
 
-    public Int getRRC连接建立完成次数() {
+    public Integer getRRC连接建立完成次数() {
         return RRC连接建立完成次数;
     }
 
-    public void setRRC连接建立完成次数(Int RRC连接建立完成次数) {
+    public void setRRC连接建立完成次数(Integer RRC连接建立完成次数) {
         this.RRC连接建立完成次数 = RRC连接建立完成次数;
     }
 
-    public Int getRRC连接请求次数_包括重发() {
+    public Integer getRRC连接请求次数_包括重发() {
         return RRC连接请求次数_包括重发;
     }
 
-    public void setRRC连接请求次数_包括重发(Int RRC连接请求次数_包括重发) {
+    public void setRRC连接请求次数_包括重发(Integer RRC连接请求次数_包括重发) {
         this.RRC连接请求次数_包括重发 = RRC连接请求次数_包括重发;
     }
 
@@ -245,19 +245,19 @@ public class KPI {
         this.RRC建立成功率qf = RRC建立成功率qf;
     }
 
-    public Int getE_RAB建立成功总次数() {
+    public Integer getE_RAB建立成功总次数() {
         return E_RAB建立成功总次数;
     }
 
-    public void setE_RAB建立成功总次数(Int e_RAB建立成功总次数) {
+    public void setE_RAB建立成功总次数(Integer e_RAB建立成功总次数) {
         E_RAB建立成功总次数 = e_RAB建立成功总次数;
     }
 
-    public Int getE_RAB建立尝试总次数() {
+    public Integer getE_RAB建立尝试总次数() {
         return E_RAB建立尝试总次数;
     }
 
-    public void setE_RAB建立尝试总次数(Int e_RAB建立尝试总次数) {
+    public void setE_RAB建立尝试总次数(Integer e_RAB建立尝试总次数) {
         E_RAB建立尝试总次数 = e_RAB建立尝试总次数;
     }
 
@@ -269,19 +269,19 @@ public class KPI {
         E_RAB建立成功率 = e_RAB建立成功率;
     }
 
-    public Int geteNodeB触发的E_RAB异常释放总次数() {
+    public Integer geteNodeB触发的E_RAB异常释放总次数() {
         return eNodeB触发的E_RAB异常释放总次数;
     }
 
-    public void seteNodeB触发的E_RAB异常释放总次数(Int eNodeB触发的E_RAB异常释放总次数) {
+    public void seteNodeB触发的E_RAB异常释放总次数(Integer eNodeB触发的E_RAB异常释放总次数) {
         this.eNodeB触发的E_RAB异常释放总次数 = eNodeB触发的E_RAB异常释放总次数;
     }
 
-    public Int get小区切换出E_RAB异常释放总次数() {
+    public Integer get小区切换出E_RAB异常释放总次数() {
         return 小区切换出E_RAB异常释放总次数;
     }
 
-    public void set小区切换出E_RAB异常释放总次数(Int 小区切换出E_RAB异常释放总次数) {
+    public void set小区切换出E_RAB异常释放总次数(Integer 小区切换出E_RAB异常释放总次数) {
         this.小区切换出E_RAB异常释放总次数 = 小区切换出E_RAB异常释放总次数;
     }
 
@@ -301,27 +301,27 @@ public class KPI {
         this.无线接通率ay = 无线接通率ay;
     }
 
-    public Int geteNodeB发起的S1_RESET导致的UE_Context释放次数() {
+    public Integer geteNodeB发起的S1_RESET导致的UE_Context释放次数() {
         return eNodeB发起的S1_RESET导致的UE_Context释放次数;
     }
 
-    public void seteNodeB发起的S1_RESET导致的UE_Context释放次数(Int eNodeB发起的S1_RESET导致的UE_Context释放次数) {
+    public void seteNodeB发起的S1_RESET导致的UE_Context释放次数(Integer eNodeB发起的S1_RESET导致的UE_Context释放次数) {
         this.eNodeB发起的S1_RESET导致的UE_Context释放次数 = eNodeB发起的S1_RESET导致的UE_Context释放次数;
     }
 
-    public Int getUE_Context异常释放次数() {
+    public Integer getUE_Context异常释放次数() {
         return UE_Context异常释放次数;
     }
 
-    public void setUE_Context异常释放次数(Int UE_Context异常释放次数) {
+    public void setUE_Context异常释放次数(Integer UE_Context异常释放次数) {
         this.UE_Context异常释放次数 = UE_Context异常释放次数;
     }
 
-    public Int getUE_Context建立成功总次数() {
+    public Integer getUE_Context建立成功总次数() {
         return UE_Context建立成功总次数;
     }
 
-    public void setUE_Context建立成功总次数(Int UE_Context建立成功总次数) {
+    public void setUE_Context建立成功总次数(Integer UE_Context建立成功总次数) {
         this.UE_Context建立成功总次数 = UE_Context建立成功总次数;
     }
 
@@ -333,67 +333,67 @@ public class KPI {
         this.无线掉线率 = 无线掉线率;
     }
 
-    public Int geteNodeB内异频切换出成功次数() {
+    public Integer geteNodeB内异频切换出成功次数() {
         return eNodeB内异频切换出成功次数;
     }
 
-    public void seteNodeB内异频切换出成功次数(Int eNodeB内异频切换出成功次数) {
+    public void seteNodeB内异频切换出成功次数(Integer eNodeB内异频切换出成功次数) {
         this.eNodeB内异频切换出成功次数 = eNodeB内异频切换出成功次数;
     }
 
-    public Int geteNodeB内异频切换出尝试次数() {
+    public Integer geteNodeB内异频切换出尝试次数() {
         return eNodeB内异频切换出尝试次数;
     }
 
-    public void seteNodeB内异频切换出尝试次数(Int eNodeB内异频切换出尝试次数) {
+    public void seteNodeB内异频切换出尝试次数(Integer eNodeB内异频切换出尝试次数) {
         this.eNodeB内异频切换出尝试次数 = eNodeB内异频切换出尝试次数;
     }
 
-    public Int geteNodeB内同频切换出成功次数() {
+    public Integer geteNodeB内同频切换出成功次数() {
         return eNodeB内同频切换出成功次数;
     }
 
-    public void seteNodeB内同频切换出成功次数(Int eNodeB内同频切换出成功次数) {
+    public void seteNodeB内同频切换出成功次数(Integer eNodeB内同频切换出成功次数) {
         this.eNodeB内同频切换出成功次数 = eNodeB内同频切换出成功次数;
     }
 
-    public Int geteNodeB内同频切换出尝试次数() {
+    public Integer geteNodeB内同频切换出尝试次数() {
         return eNodeB内同频切换出尝试次数;
     }
 
-    public void seteNodeB内同频切换出尝试次数(Int eNodeB内同频切换出尝试次数) {
+    public void seteNodeB内同频切换出尝试次数(Integer eNodeB内同频切换出尝试次数) {
         this.eNodeB内同频切换出尝试次数 = eNodeB内同频切换出尝试次数;
     }
 
-    public Int geteNodeB间异频切换出成功次数() {
+    public Integer geteNodeB间异频切换出成功次数() {
         return eNodeB间异频切换出成功次数;
     }
 
-    public void seteNodeB间异频切换出成功次数(Int eNodeB间异频切换出成功次数) {
+    public void seteNodeB间异频切换出成功次数(Integer eNodeB间异频切换出成功次数) {
         this.eNodeB间异频切换出成功次数 = eNodeB间异频切换出成功次数;
     }
 
-    public Int geteNodeB间异频切换出尝试次数() {
+    public Integer geteNodeB间异频切换出尝试次数() {
         return eNodeB间异频切换出尝试次数;
     }
 
-    public void seteNodeB间异频切换出尝试次数(Int eNodeB间异频切换出尝试次数) {
+    public void seteNodeB间异频切换出尝试次数(Integer eNodeB间异频切换出尝试次数) {
         this.eNodeB间异频切换出尝试次数 = eNodeB间异频切换出尝试次数;
     }
 
-    public Int geteNodeB间同频切换出成功次数() {
+    public Integer geteNodeB间同频切换出成功次数() {
         return eNodeB间同频切换出成功次数;
     }
 
-    public void seteNodeB间同频切换出成功次数(Int eNodeB间同频切换出成功次数) {
+    public void seteNodeB间同频切换出成功次数(Integer eNodeB间同频切换出成功次数) {
         this.eNodeB间同频切换出成功次数 = eNodeB间同频切换出成功次数;
     }
 
-    public Int geteNodeB间同频切换出尝试次数() {
+    public Integer geteNodeB间同频切换出尝试次数() {
         return eNodeB间同频切换出尝试次数;
     }
 
-    public void seteNodeB间同频切换出尝试次数(Int eNodeB间同频切换出尝试次数) {
+    public void seteNodeB间同频切换出尝试次数(Integer eNodeB间同频切换出尝试次数) {
         this.eNodeB间同频切换出尝试次数 = eNodeB间同频切换出尝试次数;
     }
 
@@ -437,27 +437,27 @@ public class KPI {
         this.切换成功率 = 切换成功率;
     }
 
-    public Int get小区PDCP层所接收到的上行数据的总吞吐量() {
+    public Integer get小区PDCP层所接收到的上行数据的总吞吐量() {
         return 小区PDCP层所接收到的上行数据的总吞吐量;
     }
 
-    public void set小区PDCP层所接收到的上行数据的总吞吐量(Int 小区PDCP层所接收到的上行数据的总吞吐量) {
+    public void set小区PDCP层所接收到的上行数据的总吞吐量(Integer 小区PDCP层所接收到的上行数据的总吞吐量) {
         this.小区PDCP层所接收到的上行数据的总吞吐量 = 小区PDCP层所接收到的上行数据的总吞吐量;
     }
 
-    public Int get小区PDCP层所发送的下行数据的总吞吐量() {
+    public Integer get小区PDCP层所发送的下行数据的总吞吐量() {
         return 小区PDCP层所发送的下行数据的总吞吐量;
     }
 
-    public void set小区PDCP层所发送的下行数据的总吞吐量(Int 小区PDCP层所发送的下行数据的总吞吐量) {
+    public void set小区PDCP层所发送的下行数据的总吞吐量(Integer 小区PDCP层所发送的下行数据的总吞吐量) {
         this.小区PDCP层所发送的下行数据的总吞吐量 = 小区PDCP层所发送的下行数据的总吞吐量;
     }
 
-    public Int getRRC重建请求次数() {
+    public Integer getRRC重建请求次数() {
         return RRC重建请求次数;
     }
 
-    public void setRRC重建请求次数(Int RRC重建请求次数) {
+    public void setRRC重建请求次数(Integer RRC重建请求次数) {
         this.RRC重建请求次数 = RRC重建请求次数;
     }
 
@@ -469,52 +469,51 @@ public class KPI {
         this.RRC连接重建比率 = RRC连接重建比率;
     }
 
-    public Int get通过重建回源小区的eNodeB间同频切换出执行成功次数() {
+    public Integer get通过重建回源小区的eNodeB间同频切换出执行成功次数() {
         return 通过重建回源小区的eNodeB间同频切换出执行成功次数;
     }
 
-    public void set通过重建回源小区的eNodeB间同频切换出执行成功次数(Int 通过重建回源小区的eNodeB间同频切换出执行成功次数) {
+    public void set通过重建回源小区的eNodeB间同频切换出执行成功次数(Integer 通过重建回源小区的eNodeB间同频切换出执行成功次数) {
         this.通过重建回源小区的eNodeB间同频切换出执行成功次数 = 通过重建回源小区的eNodeB间同频切换出执行成功次数;
     }
 
-    public Int get通过重建回源小区的eNodeB间异频切换出执行成功次数() {
+    public Integer get通过重建回源小区的eNodeB间异频切换出执行成功次数() {
         return 通过重建回源小区的eNodeB间异频切换出执行成功次数;
     }
 
-    public void set通过重建回源小区的eNodeB间异频切换出执行成功次数(Int 通过重建回源小区的eNodeB间异频切换出执行成功次数) {
+    public void set通过重建回源小区的eNodeB间异频切换出执行成功次数(Integer 通过重建回源小区的eNodeB间异频切换出执行成功次数) {
         this.通过重建回源小区的eNodeB间异频切换出执行成功次数 = 通过重建回源小区的eNodeB间异频切换出执行成功次数;
     }
 
-    public Int get通过重建回源小区的eNodeB内同频切换出执行成功次数() {
+    public Integer get通过重建回源小区的eNodeB内同频切换出执行成功次数() {
         return 通过重建回源小区的eNodeB内同频切换出执行成功次数;
     }
 
-    public void set通过重建回源小区的eNodeB内同频切换出执行成功次数(Int 通过重建回源小区的eNodeB内同频切换出执行成功次数) {
+    public void set通过重建回源小区的eNodeB内同频切换出执行成功次数(Integer 通过重建回源小区的eNodeB内同频切换出执行成功次数) {
         this.通过重建回源小区的eNodeB内同频切换出执行成功次数 = 通过重建回源小区的eNodeB内同频切换出执行成功次数;
     }
 
-    public Int get通过重建回源小区的eNodeB内异频切换出执行成功次数() {
+    public Integer get通过重建回源小区的eNodeB内异频切换出执行成功次数() {
         return 通过重建回源小区的eNodeB内异频切换出执行成功次数;
     }
 
-    public void set通过重建回源小区的eNodeB内异频切换出执行成功次数(Int 通过重建回源小区的eNodeB内异频切换出执行成功次数) {
+    public void set通过重建回源小区的eNodeB内异频切换出执行成功次数(Integer 通过重建回源小区的eNodeB内异频切换出执行成功次数) {
         this.通过重建回源小区的eNodeB内异频切换出执行成功次数 = 通过重建回源小区的eNodeB内异频切换出执行成功次数;
     }
 
-    public Int geteNB内切换出成功次数() {
+    public Integer geteNB内切换出成功次数() {
         return eNB内切换出成功次数;
     }
 
-    public void seteNB内切换出成功次数(Int eNB内切换出成功次数) {
+    public void seteNB内切换出成功次数(Integer eNB内切换出成功次数) {
         this.eNB内切换出成功次数 = eNB内切换出成功次数;
     }
 
-    public Int geteNB内切换出请求次数() {
+    public Integer geteNB内切换出请求次数() {
         return eNB内切换出请求次数;
     }
 
-    public void seteNB内切换出请求次数(Int eNB内切换出请求次数) {
+    public void seteNB内切换出请求次数(Integer eNB内切换出请求次数) {
         this.eNB内切换出请求次数 = eNB内切换出请求次数;
     }
-
 }

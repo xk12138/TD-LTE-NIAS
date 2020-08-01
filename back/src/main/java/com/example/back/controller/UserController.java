@@ -47,7 +47,7 @@ public class UserController {
 
         response.addCookie(new Cookie("ta", cookie));
 
-        result.put("code", ErrorCode.SERVER_ERROR);
+        result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
     }
 
@@ -69,7 +69,7 @@ public class UserController {
             return WebTools.buildJsonResponse(result);
         }
 
-        int userId = userService.login(account, password);
+        int userId = userService.register(account, password);
         if(userId == 0) {
             result.put("code", ErrorCode.REGISTER_FAILED.getValue());
             return WebTools.buildJsonResponse(result);
@@ -80,7 +80,7 @@ public class UserController {
 
         response.addCookie(new Cookie("ta", cookie));
 
-        result.put("code", ErrorCode.SERVER_ERROR);
+        result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
     }
 
