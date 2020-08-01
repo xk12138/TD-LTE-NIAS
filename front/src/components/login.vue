@@ -6,7 +6,7 @@
       <el-button type="text" v-on:click="changeFunc(0)">注册</el-button>
     </el-header>
     <el-main>
-      <div v-if="roll&&func">普通用户登陆界面
+      <div v-if="roll&&func">普通用户登陆界面（改动）
         <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
         <el-input type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
         <el-form-item>
