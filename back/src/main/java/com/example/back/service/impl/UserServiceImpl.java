@@ -1,7 +1,6 @@
 package com.example.back.service.impl;
 
 import com.example.back.model.User;
-import com.example.back.repository.CookieRepository;
 import com.example.back.repository.UserRepository;
 import com.example.back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    CookieRepository cookieRepository;
 
     @Override
     public int login(String account, String password) {
