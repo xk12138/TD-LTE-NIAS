@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PRBRepository extends JpaRepository<PRB, PRBKey> {
 
-    @Query(value = "create table if not exists tbPRBnew (select " +
-            " 起始时间, 60 as 周期， 网元名称")
-    void createIfNotExists();
+//    @Query(value = "create table if not exists tbPRBnew (select " +
+//            " 起始时间, 60 as 周期， 网元名称")
+//    void createIfNotExists();
 
 }
