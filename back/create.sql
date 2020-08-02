@@ -41,7 +41,7 @@ CREATE TABLE if not exists tbKPI(
 	通过重建回源小区的eNodeB内异频切换出执行成功次数 INT,
 	eNB内切换出成功次数 INT,
 	eNB内切换出请求次数 INT,
-	PRIMARY KEY (小区名)
+	PRIMARY KEY (起始时间, 网元名称)
 );
 
 CREATE TABLE if not exists tbPRB(
