@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "info_search"
+        name: "info_search",
       data(){
         return{
           activeName: 'second'
