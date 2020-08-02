@@ -7,7 +7,15 @@ import java.util.Objects;
 public class KPIKey implements Serializable {
 
     private Date 起始时间;
-    private String 网元名称;
+    private String 小区名;
+
+    @Override
+    public String toString() {
+        return "KPIKey{" +
+                "起始时间=" + 起始时间 +
+                ", 小区名='" + 小区名 + '\'' +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -15,20 +23,12 @@ public class KPIKey implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         KPIKey kpiKey = (KPIKey) o;
         return Objects.equals(起始时间, kpiKey.起始时间) &&
-                Objects.equals(网元名称, kpiKey.网元名称);
+                Objects.equals(小区名, kpiKey.小区名);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(起始时间, 网元名称);
-    }
-
-    @Override
-    public String toString() {
-        return "KPIKey{" +
-                "起始时间=" + 起始时间 +
-                ", 网元名称='" + 网元名称 + '\'' +
-                '}';
+        return Objects.hash(起始时间, 小区名);
     }
 
     public Date get起始时间() {
@@ -39,11 +39,11 @@ public class KPIKey implements Serializable {
         this.起始时间 = 起始时间;
     }
 
-    public String get网元名称() {
-        return 网元名称;
+    public String get小区名() {
+        return 小区名;
     }
 
-    public void set网元名称(String 网元名称) {
-        this.网元名称 = 网元名称;
+    public void set小区名(String 小区名) {
+        this.小区名 = 小区名;
     }
 }

@@ -15,13 +15,13 @@ public class KPI {
     @Column(name = "周期")
     private Integer 周期;
 
-    @Id
     @Column(name = "网元名称")
     private String 网元名称;
 
     @Column(name = "小区")
     private String 小区;
 
+    @Id
     @Column(name = "小区名")
     private String 小区名;
 
