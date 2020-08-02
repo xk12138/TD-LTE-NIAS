@@ -1,13 +1,16 @@
 package com.example.back.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbKPI")
+@IdClass(value = KPIKey.class)
 public class KPI {
 
+    @Id
     @Column(name = "起始时间")
-    private String 起始时间;
+    private Date 起始时间;
 
     @Column(name = "周期")
     private Integer 周期;
@@ -181,11 +184,11 @@ public class KPI {
                 '}';
     }
 
-    public String get起始时间() {
+    public Date get起始时间() {
         return 起始时间;
     }
 
-    public void set起始时间(String 起始时间) {
+    public void set起始时间(Date 起始时间) {
         this.起始时间 = 起始时间;
     }
 

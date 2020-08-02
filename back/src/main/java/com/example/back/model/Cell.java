@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbCell")
+@Table(name = "tbcell")
 public class Cell {
 
     @Column(name = "CITY")
@@ -20,7 +20,7 @@ public class Cell {
     private String SECTOR_NAME;
 
     @Column(name = "ENODEBID")
-    private Float ENODEBID;
+    private Integer ENODEBID;
 
     @Column(name = "ENODEB_NAME")
     private String ENODEB_NAME;
@@ -116,11 +116,11 @@ public class Cell {
         this.SECTOR_NAME = SECTOR_NAME;
     }
 
-    public Float getENODEBID() {
+    public Integer getENODEBID() {
         return ENODEBID;
     }
 
-    public void setENODEBID(Float ENODEBID) {
+    public void setENODEBID(Integer ENODEBID) {
         this.ENODEBID = ENODEBID;
     }
 

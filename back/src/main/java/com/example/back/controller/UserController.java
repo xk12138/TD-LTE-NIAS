@@ -67,7 +67,7 @@ public class UserController {
             result.put("msg", "此用户名已被使用");
             return WebTools.buildJsonResponse(result);
         }
-
+        
         int userId = userService.register(account, password);
         if(userId == 0) {
             result.put("code", ErrorCode.REGISTER_FAILED.getValue());
@@ -82,5 +82,5 @@ public class UserController {
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
     }
-    
+
 }

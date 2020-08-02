@@ -4,8 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tbPRB")
+@IdClass(value = PRBKey.class)
 public class PRB {
 
+    @Id
     @Column(name = "起始时间")
     private String 起始时间;
 

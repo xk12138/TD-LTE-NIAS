@@ -1,16 +1,16 @@
 CREATE TABLE if not exists tbKPI(
-  起始时间 DATETIME,
-	周期 INT,
-	网元名称 VARCHAR(255),
-	小区 VARCHAR(255),
-	小区名 VARCHAR(255),
-	RRC连接建立完成次数 INT,
-	RRC连接请求次数_包括重发 INT,
-	RRC建立成功率qf FLOAT,
-	E_RAB建立成功总次数 INT,
-	E_RAB建立尝试总次数 INT,
-	E_RAB建立成功率 FLOAT,
-  eNodeB触发的E_RAB异常释放总次数 INT,
+    起始时间 DATETIME,
+    周期 INT,
+    网元名称 VARCHAR(255),
+    小区 VARCHAR(255),
+    小区名 VARCHAR(255),
+    RRC连接建立完成次数 INT,
+    RRC连接请求次数_包括重发 INT,
+    RRC建立成功率qf FLOAT,
+    E_RAB建立成功总次数 INT,
+    E_RAB建立尝试总次数 INT,
+    E_RAB建立成功率 FLOAT,
+    eNodeB触发的E_RAB异常释放总次数 INT,
 	小区切换出E_RAB异常释放总次数 INT,
 	E_RAB掉线率_新 FLOAT,
 	无线接通率ay FLOAT,
@@ -41,11 +41,11 @@ CREATE TABLE if not exists tbKPI(
 	通过重建回源小区的eNodeB内异频切换出执行成功次数 INT,
 	eNB内切换出成功次数 INT,
 	eNB内切换出请求次数 INT,
-	PRIMARY KEY (小区名)
-	);
+	PRIMARY KEY (起始时间, 小区名)
+);
 
 CREATE TABLE if not exists tbPRB(
-  起始时间 DATETIME,
+    起始时间 DATETIME,
 	周期 INT,
 	网元名称 VARCHAR(255),
 	小区 VARCHAR(255),
@@ -151,10 +151,10 @@ CREATE TABLE if not exists tbPRB(
 	第98个PRB上检测到的干扰噪声的平均值 INT,
 	第99个PRB上检测到的干扰噪声的平均值 INT,
 	PRIMARY KEY (小区名)
-	);
+);
 
-	CREATE TABLE if not exists tbC2I(
-  CITY VARCHAR(255),
+CREATE TABLE if not exists tbC2I(
+    CITY VARCHAR(255),
 	SCELL VARCHAR(255),
 	NCELL VARCHAR(255),
 	PrC2I9 FLOAT,
@@ -163,33 +163,33 @@ CREATE TABLE if not exists tbPRB(
 	SampleCount FLOAT,
 	WeightedC2I FLOAT,
 	PRIMARY KEY (SCELL,NCELL)
-	);
+);
 
-	CREATE TABLE if not exists tbCell(
+CREATE TABLE if not exists tbCell(
     CITY VARCHAR(255),
-		SECTOR_ID VARCHAR(50),
-		SECTOR_NAME VARCHAR(255),
-		ENODEEBID INT NOT NULL,
-		ENODEED_NAME VARCHAR(255) NOT NULL,
-		EARFCN INT NOT NULL,
-		PCI INT NOT NULL,
-		PSS INT,
-		SSS INT,
-		TAC INT,
-		VENDOR VARCHAR(255),
-		LONGITUDE FLOAT NOT NULL,
-		LATITUDE FLOAT NOT NULL,
-		STYLE VARCHAR(255),
-		AZIMUTH FLOAT NOT NULL,
-		HEIGHT FLOAT,
-		ELECTTILT FLOAT,
-		MECHTILT FLOAT,
-		TOTLETILT FLOAT NOT NULL,
-		PRIMARY KEY (SECTOR_ID),
-		CHECK (PCI BETWEEN 0 AND 503)
-		);
+    SECTOR_ID VARCHAR(50),
+    SECTOR_NAME VARCHAR(255),
+    ENODEBID INT NOT NULL,
+    ENODEB_NAME VARCHAR(255) NOT NULL,
+    EARFCN INT NOT NULL,
+    PCI INT NOT NULL,
+    PSS INT,
+    SSS INT,
+    TAC INT,
+    VENDOR VARCHAR(255),
+    LONGITUDE FLOAT NOT NULL,
+    LATITUDE FLOAT NOT NULL,
+    STYLE VARCHAR(255),
+    AZIMUTH FLOAT NOT NULL,
+    HEIGHT FLOAT,
+    ELECTTILT FLOAT,
+    MECHTILT FLOAT,
+    TOTLETILT FLOAT NOT NULL,
+    PRIMARY KEY (SECTOR_ID),
+    CHECK (PCI BETWEEN 0 AND 503)
+);
 
-  CREATE TABLE if not exists tbMROData(
+CREATE TABLE if not exists tbMROData(
     TimeStamp VARCHAR(30),
 	ServingSector VARCHAR(50),
 	InterferingSector VARCHAR(50),
@@ -198,7 +198,8 @@ CREATE TABLE if not exists tbPRB(
 	LteNcEarfcn INT,
 	LteNcPci SMALLINT,
 	PRIMARY KEY (TimeStamp,ServingSector,InterferingSector)
-	);
+);
+
 create table if not exists cookie (
 	cookie_id varchar(255) primary key,
 	user_id int not null,
