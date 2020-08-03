@@ -4,11 +4,22 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
+    properties:
+      jdbc:
+        batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
   datasource:
     url: jdbc:mysql://localhost:3306/nias?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      enabled: true
+      resolve-lazily: false
 
   main:
     allow-bean-definition-overriding: true
