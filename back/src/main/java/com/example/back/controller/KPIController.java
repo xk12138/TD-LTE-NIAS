@@ -4,19 +4,22 @@ import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
 import com.example.back.model.KPI;
 import com.example.back.service.KPIService;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,14 +32,17 @@ public class KPIController {
     @Autowired
     KPIService kpiService;
 
-    @RequestMapping(value = "import")
+    private static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
+    @RequestMapping(value = "import", consumes = "multipart/form-data;charset=utf-8")
     @CrossOrigin
-    public ResponseEntity<String> importKPI(HttpServletRequest request) {
+    public ResponseEntity<String> importKPI(HttpServletRequest request, MultipartFile file) throws IOException {
         Map<String, Object> result = new HashMap<>();
+        InputStream inputStream = file.getInputStream();
 
         Workbook workbook;
         try {
-            workbook = new XSSFWorkbook(request.getInputStream());
+            workbook = new XSSFWorkbook(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
             result.put("code", ErrorCode.OPERATE_FAILED.getValue());
@@ -78,7 +84,12 @@ public class KPIController {
             Cell cell = row.getCell(i);
             switch (i) {
                 case 0: {
-                    kpi.set起始时间(cell.getDateCellValue());
+                    try {
+                        kpi.set起始时间(dateFormat.parse(cell.getStringCellValue()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
                     break;
                 }
                 case 1: {
@@ -186,19 +197,39 @@ public class KPIController {
                     break;
                 }
                 case 27: {
-                    kpi.seteNB内切换成功率((float) cell.getNumericCellValue());
+                    if(cell.getCellType() == CellType.STRING) {
+                        kpi.seteNB内切换出成功次数(0);
+                    }
+                    else {
+                        kpi.seteNB内切换成功率((float) cell.getNumericCellValue());
+                    }
                     break;
                 }
                 case 28: {
-                    kpi.seteNB间切换成功率((float) cell.getNumericCellValue());
+                    if(cell.getCellType() == CellType.STRING) {
+                        kpi.seteNB间切换成功率(0f);
+                    }
+                    else {
+                        kpi.seteNB间切换成功率((float) cell.getNumericCellValue());
+                    }
                     break;
                 }
                 case 29: {
-                    kpi.set同频切换成功率zsp((float) cell.getNumericCellValue());
+                    if(cell.getCellType() == CellType.STRING) {
+                        kpi.set同频切换成功率zsp(0f);
+                    }
+                    else {
+                        kpi.set同频切换成功率zsp((float) cell.getNumericCellValue());
+                    }
                     break;
                 }
                 case 30: {
-                    kpi.set异频切换成功率zsp((float) cell.getNumericCellValue());
+                    if(cell.getCellType() == CellType.STRING) {
+                        kpi.set异频切换成功率zsp(0f);
+                    }
+                    else {
+                        kpi.set异频切换成功率zsp((float) cell.getNumericCellValue());
+                    }
                     break;
                 }
                 case 31: {

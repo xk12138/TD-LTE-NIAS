@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface KPIRepository extends JpaRepository<KPI, KPIKey> {
 
-    @Query(value = "insert into tbkpi values :kpis", nativeQuery = true)
+    @Query(value = "insert into tbkpi values (:kpis)", nativeQuery = true)
     @Modifying
     void importKPI(@Param(value = "kpis") List<KPI> kpis);
 
