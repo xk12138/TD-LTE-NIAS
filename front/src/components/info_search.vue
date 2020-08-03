@@ -1,345 +1,358 @@
+<!--author:AK
+info_search.vue：信息查询页面
+version1.0:2020/8/3，完成构建页面，没有添加接口-->
 <template>
-  <el-tabs v-model="activeName" >
-    <el-tab-pane label="小区配置信息查询" name="first">
-      <el-dropdown @command="handleCommand0">
+  <el-container>
+    <el-header>
+      <el-page-header @back="goBack" content="信息查询"></el-page-header>
+    </el-header>
+    <el-container>
+      <el-main>
+        <el-tabs v-model="activeName" >
+          <el-tab-pane label="小区配置信息查询" name="first">
+            <el-dropdown @command="handleCommand0">
       <span class="el-dropdown-link">
         选择小区<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">testA</el-dropdown-item>
-          <el-dropdown-item command="b">testB</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <div v-if="ifsearch0">
-        <el-table
-          :data="tableData"
-          height="400"
-          border
-          style="width: 100%">
-          <el-table-column
-            prop="city"
-            label="CITY"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="sector_id"
-            label="SECTOR_ID"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="sector_name"
-            label="SECTOR_NAME"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enodeebid"
-            label="ENODEEBID"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enodeedname"
-            label="ENODEED_NAME"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="earfcn"
-            label="EARFCN"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="pci"
-            label="PCI"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="pss"
-            label="PSS"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="sss"
-            label="SSS"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="tac"
-            label="TAC"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="vendor"
-            label="VENDOR"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="longitude"
-            label="LONGITUDE"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="style"
-            label="STYLE"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="azimuth"
-            label="AZIMUTH"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="height"
-            label="HEIGHT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="electtilt"
-            label="ELECTTILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="mechtilt"
-            label="MECHTILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="totletilt"
-            label="TOTLETILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enodebid"
-            label="enodebid"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enoedebname"
-            label="enodeb_name"
-            width="100">
-          </el-table-column>
-        </el-table>
-      </div>
-    </el-tab-pane>
-    <el-tab-pane label="基站eNodeB信息查询" name="second">
-      <el-dropdown @command="handleCommand1">
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">testA</el-dropdown-item>
+                <el-dropdown-item command="b">testB</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <div v-if="ifsearch0">
+              <el-table
+                :data="tableData"
+                height="400"
+                border
+                style="width: 100%">
+                <el-table-column
+                  prop="city"
+                  label="CITY"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  prop="sector_id"
+                  label="SECTOR_ID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  prop="sector_name"
+                  label="SECTOR_NAME"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodeebid"
+                  label="ENODEEBID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodeedname"
+                  label="ENODEED_NAME"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="earfcn"
+                  label="EARFCN"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="pci"
+                  label="PCI"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="pss"
+                  label="PSS"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="sss"
+                  label="SSS"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="tac"
+                  label="TAC"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="vendor"
+                  label="VENDOR"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="longitude"
+                  label="LONGITUDE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="style"
+                  label="STYLE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="azimuth"
+                  label="AZIMUTH"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="height"
+                  label="HEIGHT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="electtilt"
+                  label="ELECTTILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="mechtilt"
+                  label="MECHTILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="totletilt"
+                  label="TOTLETILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodebid"
+                  label="enodebid"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enoedebname"
+                  label="enodeb_name"
+                  width="100">
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="基站eNodeB信息查询" name="second">
+            <el-dropdown @command="handleCommand1">
       <span class="el-dropdown-link">
         选择基站<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">testA</el-dropdown-item>
-          <el-dropdown-item command="b">testB</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <div v-if="ifsearch1">
-        <el-table
-          :data="tableData"
-          height="400"
-          border
-          style="width: 100%">
-          <el-table-column
-            prop="city"
-            label="CITY"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="sector_id"
-            label="SECTOR_ID"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="sector_name"
-            label="SECTOR_NAME"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enodeebid"
-            label="ENODEEBID"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="enodeedname"
-            label="ENODEED_NAME"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="earfcn"
-            label="EARFCN"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="pci"
-            label="PCI"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="pss"
-            label="PSS"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="sss"
-            label="SSS"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="tac"
-            label="TAC"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="vendor"
-            label="VENDOR"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="longitude"
-            label="LONGITUDE"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="style"
-            label="STYLE"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="azimuth"
-            label="AZIMUTH"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="height"
-            label="HEIGHT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="electtilt"
-            label="ELECTTILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="mechtilt"
-            label="MECHTILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="totletilt"
-            label="TOTLETILT"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="enodebid"
-            label="enodebid"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="enoedebname"
-            label="enodeb_name"
-            width="100">
-          </el-table-column>
-        </el-table>
-      </div>
-    </el-tab-pane>
-    <el-tab-pane label="KPI指标信息查询" name="third">
-      <el-dropdown @command="handleCommand2">
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">testA</el-dropdown-item>
+                <el-dropdown-item command="b">testB</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <div v-if="ifsearch1">
+              <el-table
+                :data="tableData"
+                height="400"
+                border
+                style="width: 100%">
+                <el-table-column
+                  prop="city"
+                  label="CITY"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="sector_id"
+                  label="SECTOR_ID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="sector_name"
+                  label="SECTOR_NAME"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodeebid"
+                  label="ENODEEBID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodeedname"
+                  label="ENODEED_NAME"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="earfcn"
+                  label="EARFCN"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="pci"
+                  label="PCI"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="pss"
+                  label="PSS"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="sss"
+                  label="SSS"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="tac"
+                  label="TAC"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="vendor"
+                  label="VENDOR"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="longitude"
+                  label="LONGITUDE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="style"
+                  label="STYLE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="azimuth"
+                  label="AZIMUTH"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="height"
+                  label="HEIGHT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="electtilt"
+                  label="ELECTTILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="mechtilt"
+                  label="MECHTILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="totletilt"
+                  label="TOTLETILT"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  prop="enodebid"
+                  label="enodebid"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  prop="enoedebname"
+                  label="enodeb_name"
+                  width="100">
+                </el-table-column>
+              </el-table>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="KPI指标信息查询" name="third">
+            <el-dropdown @command="handleCommand2">
       <span class="el-dropdown-link">
         选择网元<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">testA</el-dropdown-item>
-          <el-dropdown-item command="b">testB</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <div v-if="ifsearch2">
-        <el-table
-          :data="tableData"
-          height="400"
-          border
-          style="width: 100%">
-          <el-table-column
-            fixed
-            prop="网元名称"
-            label="网元名称"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="属性1"
-            label="属性1"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="属性2"
-            label="属性2"
-            width="100">
-          </el-table-column>
-        </el-table>
-        <div class="block">
-          <span class="demonstration">选择起止日期</span>
-          <el-date-picker
-            type="daterange"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-            format="yyyy 年 MM 月 dd 日"
-            value-format="yyyy-MM-dd"
-            v-model="s_e_date">
-          </el-date-picker>
-          <el-button type="primary" icon="el-icon-s-marketing" @click="showChart">展示结果</el-button>
-        </div>
-      </div>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">testA</el-dropdown-item>
+                <el-dropdown-item command="b">testB</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <div v-if="ifsearch2">
+              <el-table
+                :data="tableData"
+                height="400"
+                border
+                style="width: 100%">
+                <el-table-column
+                  fixed
+                  prop="网元名称"
+                  label="网元名称"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="属性1"
+                  label="属性1"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="属性2"
+                  label="属性2"
+                  width="100">
+                </el-table-column>
+              </el-table>
+              <div class="block">
+                <span class="demonstration">选择起止日期</span>
+                <el-date-picker
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  format="yyyy 年 MM 月 dd 日"
+                  value-format="yyyy-MM-dd"
+                  v-model="s_e_date">
+                </el-date-picker>
+                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart">展示结果</el-button>
+              </div>
+            </div>
 
-    </el-tab-pane>
-    <el-tab-pane label="PRB信息统计与查询" name="forth">
-      <el-dropdown @command="handleCommand3">
+          </el-tab-pane>
+          <el-tab-pane label="PRB信息统计与查询" name="forth">
+            <el-dropdown @command="handleCommand3">
       <span class="el-dropdown-link">
         选择网元<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="a">testA</el-dropdown-item>
-          <el-dropdown-item command="b">testB</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <div v-if="ifsearch3">
-        <el-table
-          :data="tableData"
-          height="400"
-          border
-          style="width: 100%">
-          <el-table-column
-            fixed
-            prop="网元名称"
-            label="网元名称"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="属性1"
-            label="属性1"
-            width="100">
-          </el-table-column>
-          <el-table-column
-            prop="属性2"
-            label="属性2"
-            width="100">
-          </el-table-column>
-        </el-table>
-        <div class="block">
-            <span class="demonstration">选择起止时间</span>
-            <el-date-picker
-              format="yyyy 年 MM 月 dd 日"
-              value-format="yyyy-MM-dd-HH:mm:ss"
-              v-model="s_e_time"
-              type="datetimerange"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期">
-            </el-date-picker>
-          <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
-        </div>
-      </div>
-    </el-tab-pane>
-  </el-tabs>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">testA</el-dropdown-item>
+                <el-dropdown-item command="b">testB</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+            <div v-if="ifsearch3">
+              <el-table
+                :data="tableData"
+                height="400"
+                border
+                style="width: 100%">
+                <el-table-column
+                  fixed
+                  prop="网元名称"
+                  label="网元名称"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="属性1"
+                  label="属性1"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="属性2"
+                  label="属性2"
+                  width="100">
+                </el-table-column>
+              </el-table>
+              <div class="block">
+                <span class="demonstration">选择起止时间</span>
+                <el-date-picker
+                  format="HH:mm:ss"
+                  value-format="yyyy-MM-dd-HH:mm:ss"
+                  v-model="s_e_time"
+                  type="datetimerange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期">
+                </el-date-picker>
+                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
+              </div>
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+      </el-main>
+    </el-container>
+  </el-container>
+
 </template>
 
 <script>
@@ -385,6 +398,10 @@
 
         showChart0:function () {
           this.$message('展示从折线图'+this.s_e_time);
+        },
+
+        goBack() {
+          this.$router.go(-1);
         }
       }
     }
@@ -397,5 +414,21 @@
   }
   .el-icon-arrow-down {
     font-size: 12px;
+  }
+  .el-header{
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+    font-size: small;
+    white-space: pre-line;
+  }
+
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+    height: 600px;
   }
 </style>

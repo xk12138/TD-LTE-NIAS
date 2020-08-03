@@ -1,3 +1,7 @@
+<!--author:AK
+index.vue：功能索引页面
+version1.0:2020/8/1，完成构建页面
+version1.1:2020/8/3，更改布局-->
 <template>
   <div>
     <el-container>
@@ -70,5 +74,6 @@
     color: #333;
     text-align: center;
     line-height: 160px;
+    height: 600px;
   }
 </style>

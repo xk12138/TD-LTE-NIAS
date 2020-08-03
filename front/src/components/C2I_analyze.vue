@@ -1,13 +1,92 @@
+<!--author:AK
+C2I_analyze.vue：主邻小区C2I干扰分析页面
+version1.0:2020/8/3，完成构建页面，没有添加接口-->
 <template>
+  <el-container>
+    <el-header>
+      <el-page-header @back="goBack" content="主邻小区C2I干扰分析"></el-page-header>
+    </el-header>
+    <el-container>
+      <el-aside height="150px">
+        主邻小区C2I干扰分析使用规则：
+        1. 设置一个参数“计算标准条数x”，将(LteScRSRP, LteNcRSRP)RSRP测量值对条数小于x的内容先筛选掉；
+        2. 点击“分析数据”进行tbMROData全表的分析；
+        3. 点击“下载tbC2Inew”进行新表tbC2Inew的下载。
+      </el-aside>
+      <el-main>
+        <el-input v-model="x" placeholder="请输入计算标准条数x"></el-input>
+        <el-button type="success" icon="el-icon-check" circle @click="submitX" :disabled="disabled"></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle @click="editX"></el-button>
+        <el-button type="info" :disabled="!disabled" @click="analyzing">分析数据</el-button>
+        <el-button type="success" :disabled="!disabled" icon="el-icon-download" @click="download">下载tbC2Inew</el-button>
+      </el-main>
+    </el-container>
+  </el-container>
 
 </template>
 
 <script>
     export default {
-        name: "C2I_analyze"
+        name: "C2I_analyze",
+      data(){
+        return{
+          x:'',
+          disabled: false,//设置按钮是否禁用
+        }
+      },
+      methods:{
+        submitX:function(){
+          this.disabled = true;
+          this.$message("提交参数"+this.x);
+        },
+
+        editX:function(){
+          this.disabled = false;
+        },
+
+        analyzing:function(){
+          this.$message({
+            type:"success",
+            message:"分析完毕，请下载"
+          })
+        },
+
+        download:function(){
+          this.$message({
+            type:"success",
+            message:"下载成功！"
+          })
+        },
+
+        goBack() {
+          this.$router.go(-1);
+        }
+      }
     }
 </script>
 
-<style scoped>
+<style>
+  .el-header{
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+    font-size: small;
+    white-space: pre-line;
+  }
+
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+    height: 600px;
+  }
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 40px;
+  }
 
 </style>
