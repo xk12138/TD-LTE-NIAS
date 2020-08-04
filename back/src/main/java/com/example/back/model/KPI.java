@@ -1,6 +1,8 @@
 package com.example.back.model;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -135,6 +137,100 @@ public class KPI {
 
     @Column(name = "eNB内切换出请求次数")
     private Integer eNB内切换出请求次数;
+
+    public static String toKeys() {
+        StringBuilder s = new StringBuilder();
+        s.append("(");
+        s.append("起始时间").append(",");
+        s.append("周期").append(",");
+        s.append("网元名称").append(",");
+        s.append("小区").append(",");
+        s.append("小区名").append(",");
+        s.append("RRC连接建立完成次数").append(",");
+        s.append("RRC连接请求次数_包括重发").append(",");
+        s.append("RRC建立成功率qf").append(",");
+        s.append("E_RAB建立成功总次数").append(",");
+        s.append("E_RAB建立尝试总次数").append(",");
+        s.append("E_RAB建立成功率").append(",");
+        s.append("e_nodeB触发的E_RAB异常释放总次数").append(",");
+        s.append("小区切换出E_RAB异常释放总次数").append(",");
+        s.append("E_RAB掉线率_新").append(",");
+        s.append("无线接通率ay").append(",");
+        s.append("e_nodeB发起的S1_RESET导致的UE_Context释放次数").append(",");
+        s.append("UE_Context异常释放次数").append(",");
+        s.append("UE_Context建立成功总次数").append(",");
+        s.append("无线掉线率").append(",");
+        s.append("e_nodeB内异频切换出成功次数").append(",");
+        s.append("e_nodeB内异频切换出尝试次数").append(",");
+        s.append("e_nodeB内同频切换出成功次数").append(",");
+        s.append("e_nodeB内同频切换出尝试次数").append(",");
+        s.append("e_nodeB间异频切换出成功次数").append(",");
+        s.append("e_nodeB间异频切换出尝试次数").append(",");
+        s.append("e_nodeB间同频切换出成功次数").append(",");
+        s.append("e_nodeB间同频切换出尝试次数").append(",");
+        s.append("eNB内切换成功率").append(",");
+        s.append("eNB间切换成功率").append(",");
+        s.append("同频切换成功率zsp").append(",");
+        s.append("异频切换成功率zsp").append(",");
+        s.append("切换成功率").append(",");
+        s.append("小区PDCP层所接收到的上行数据的总吞吐量").append(",");
+        s.append("小区PDCP层所发送的下行数据的总吞吐量").append(",");
+        s.append("RRC重建请求次数").append(",");
+        s.append("RRC连接重建比率").append(",");
+        s.append("通过重建回源小区的e_nodeB间同频切换出执行成功次数").append(",");
+        s.append("通过重建回源小区的e_nodeB间异频切换出执行成功次数").append(",");
+        s.append("通过重建回源小区的e_nodeB内同频切换出执行成功次数").append(",");
+        s.append("通过重建回源小区的e_nodeB内异频切换出执行成功次数").append(",");
+        s.append("eNB内切换出成功次数").append(",");
+        s.append("eNB内切换出请求次数").append(")");
+        return s.toString();
+    }
+
+    public String toMsg() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return "(\'" + dateFormat.format(起始时间) + "\'," +
+                "\'" + 周期 + "\'," +
+                "\'" + 网元名称 + "\'," +
+                "\'" + 小区 + "\'," +
+                "\'" + 小区名 + "\'," +
+                "\'" + RRC连接建立完成次数 + "\'," +
+                "\'" + RRC连接请求次数_包括重发 + "\'," +
+                "\'" + RRC建立成功率qf + "\'," +
+                "\'" + E_RAB建立成功总次数 + "\'," +
+                "\'" + E_RAB建立尝试总次数 + "\'," +
+                "\'" + E_RAB建立成功率 + "\'," +
+                "\'" + eNodeB触发的E_RAB异常释放总次数 + "\'," +
+                "\'" + 小区切换出E_RAB异常释放总次数 + "\'," +
+                "\'" + E_RAB掉线率_新 + "\'," +
+                "\'" + 无线接通率ay + "\'," +
+                "\'" + eNodeB发起的S1_RESET导致的UE_Context释放次数 + "\'," +
+                "\'" + UE_Context异常释放次数 + "\'," +
+                "\'" + UE_Context建立成功总次数 + "\'," +
+                "\'" + 无线掉线率 + "\'," +
+                "\'" + eNodeB内异频切换出成功次数 + "\'," +
+                "\'" + eNodeB内异频切换出尝试次数 + "\'," +
+                "\'" + eNodeB内同频切换出成功次数 + "\'," +
+                "\'" + eNodeB内同频切换出尝试次数 + "\'," +
+                "\'" + eNodeB间异频切换出成功次数 + "\'," +
+                "\'" + eNodeB间异频切换出尝试次数 + "\'," +
+                "\'" + eNodeB间同频切换出成功次数 + "\'," +
+                "\'" + eNodeB间同频切换出尝试次数 + "\'," +
+                "\'" + (eNB内切换成功率==null?"0":eNB内切换成功率) + "\'," +
+                "\'" + (eNB间切换成功率==null?"0":eNB间切换成功率) + "\'," +
+                "\'" + 同频切换成功率zsp + "\'," +
+                "\'" + 异频切换成功率zsp + "\'," +
+                "\'" + 切换成功率 + "\'," +
+                "\'" + 小区PDCP层所接收到的上行数据的总吞吐量 + "\'," +
+                "\'" + 小区PDCP层所发送的下行数据的总吞吐量 + "\'," +
+                "\'" + RRC重建请求次数 + "\'," +
+                "\'" + RRC连接重建比率 + "\'," +
+                "\'" + 通过重建回源小区的eNodeB间同频切换出执行成功次数 + "\'," +
+                "\'" + 通过重建回源小区的eNodeB间异频切换出执行成功次数 + "\'," +
+                "\'" + 通过重建回源小区的eNodeB内同频切换出执行成功次数 + "\'," +
+                "\'" + 通过重建回源小区的eNodeB内异频切换出执行成功次数 + "\'," +
+                "\'" + eNB内切换出成功次数 + "\'," +
+                "\'" + eNB内切换出请求次数 + "\')";
+    }
 
     @Override
     public String toString() {
