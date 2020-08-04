@@ -2,6 +2,7 @@ package com.example.back.service.impl;
 
 import com.example.back.model.PRB;
 import com.example.back.repository.PRBRepository;
+import com.example.back.service.KPIService;
 import com.example.back.service.PRBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
-public class PRBServicelmpl {
+public class PRBServicelmpl implements PRBService {
     private static final int batch = 50;
 
     @Autowired

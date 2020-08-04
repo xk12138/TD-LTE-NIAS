@@ -76,7 +76,7 @@ public class PRBController {
             return null;
         }
         int columns = row.getPhysicalNumberOfCells();
-        if(columns != 105) {         //总共42行
+        if(columns != 105) {
             return null;
         }
         PRB prb = new PRB();
