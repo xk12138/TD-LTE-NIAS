@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -40,6 +41,15 @@ public class KPIServiceImpl implements KPIService {
             stringBuilder.append(" on duplicate key update 周期=15");
             System.out.println(stringBuilder.toString());
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
+        }
+    }
+
+    @Override
+    public void exportKPI(String filePath) {
+        //导出KPI表
+        try {
+            kpiRepository.export(filePath);
+        } catch (Exception e) {
         }
     }
 
