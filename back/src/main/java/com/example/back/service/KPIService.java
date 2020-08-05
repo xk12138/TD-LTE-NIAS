@@ -8,4 +8,6 @@ public interface KPIService {
 
     void importKPI(List<KPI> kpis);
 
+    void exportKPI(String filePath);
+
 }

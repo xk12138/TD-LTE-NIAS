@@ -2,6 +2,7 @@ package com.example.back.controller;
 
 import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
+import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.KPI;
 import com.example.back.service.KPIService;
 import org.apache.poi.ss.usermodel.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -66,6 +68,24 @@ public class KPIController {
         }
 
         kpiService.importKPI(kpis);
+
+        result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
+    /*
+    * 这个导出接口并不是将文件传输，而是通知数据库生成文件到static中，再使用vue或者nginx进行文件的下载
+    * 所以要进行的任务有，检测目标文件是否存在，如果不存在告诉mysql导出文件
+    * */
+    @RequestMapping(value = "export")
+    public ResponseEntity<String> exportKPI(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        String filePath = ApplicationConfiguration.outfileDir + "tbkpi.txt";
+        File file = new File(filePath);
+        if(!file.exists()) {
+            kpiService.exportKPI(filePath);
+        }
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);

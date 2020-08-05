@@ -35,7 +35,8 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           <!--    limit是限制最多可上传文件的个数；action的地址是将文件传给后台的接口地址； -->
           <!--    fileList是选择的文件的全部信息，在事件中作为参数传进去，可以查看其内容；-->
           <el-tab-pane label="下载数据" name="second">下载数据
-            <el-button type="success" icon="el-icon-download" @click="download">下载tbC2Inew</el-button>
+            <el-button type="success" icon="el-icon-download" @click="download">下载tbKPI</el-button>
+            <a href="/static/tbkpi.txt">下载</a>
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -114,6 +115,13 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         },
 
         download:function(){
+          var that = this;
+          $.ajax({
+            url: '/api/kpi/export',
+            success: function(res) {
+              console.log(res);
+            }
+          })
           this.$message({
             type:"success",
             message:"下载成功！"
