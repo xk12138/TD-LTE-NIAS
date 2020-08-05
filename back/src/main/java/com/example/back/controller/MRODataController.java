@@ -74,7 +74,7 @@ public class MRODataController {
             return null;
         }
         int columns = row.getPhysicalNumberOfCells();
-        if(columns != 7) {         //总共42行
+        if(columns != 7) {
             return null;
         }
         MROData mro = new MROData();
