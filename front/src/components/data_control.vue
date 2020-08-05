@@ -12,8 +12,8 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         <el-tabs v-model="activeName" @tab-click="handleClick">
           <el-tab-pane label="上传数据" name="first">上传数据
             <el-upload
-              ref="uploadExcel"
-              action="http://127.0.0.1:8080/kpi/import"
+              ref="uploadCELL"
+              action = 'http://127.0.0.1:8080/cell/import'
               :limit="limitNum"
               :auto-upload="false"
               accept=".xlsx,.csv"
@@ -25,12 +25,73 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
               :file-list="fileList"
 
             >
-              <el-button size="small" plain>选择文件</el-button>
+              <el-button size="small" plain @click="active(0)">选择Cell文件</el-button>
               <div slot="tip" class="el-upload__tip">
                 只能上传xlsx/csv文件，且文件大小不超过50M
               </div>
             </el-upload>
-            <el-button type="primary" @click="uploadClick">确 定</el-button>
+
+            <el-upload
+              ref="uploadKPI"
+              action = 'http://127.0.0.1:8080/kpi/import'
+              :limit="limitNum"
+              :auto-upload="false"
+              accept=".xlsx,.csv"
+              :before-upload="beforeUploadFile"
+              :on-change="fileChange"
+              :on-exceed="exceedFile"
+              :on-success="handleSuccess"
+              :on-error="handleError"
+              :file-list="fileList"
+
+            >
+              <el-button size="small" plain @click="active(1)">选择KPI文件</el-button>
+              <div slot="tip" class="el-upload__tip">
+                只能上传xlsx/csv文件，且文件大小不超过50M
+              </div>
+            </el-upload>
+
+            <el-upload
+              ref="uploadPRB"
+              action = 'http://127.0.0.1:8080/prb/import'
+              :limit="limitNum"
+              :auto-upload="false"
+              accept=".xlsx,.csv"
+              :before-upload="beforeUploadFile"
+              :on-change="fileChange"
+              :on-exceed="exceedFile"
+              :on-success="handleSuccess"
+              :on-error="handleError"
+              :file-list="fileList"
+
+            >
+              <el-button size="small" plain @click="active(2)">选择PRB文件</el-button>
+              <div slot="tip" class="el-upload__tip">
+                只能上传xlsx/csv文件，且文件大小不超过50M
+              </div>
+            </el-upload>
+
+            <el-upload
+              ref="uploadMRO"
+              action = 'http://127.0.0.1:8080/mro/import'
+              :limit="limitNum"
+              :auto-upload="false"
+              accept=".xlsx,.csv"
+              :before-upload="beforeUploadFile"
+              :on-change="fileChange"
+              :on-exceed="exceedFile"
+              :on-success="handleSuccess"
+              :on-error="handleError"
+              :file-list="fileList"
+
+            >
+              <el-button size="small" plain @contextmenu="active(3)">选择MRO文件</el-button>
+              <div slot="tip" class="el-upload__tip">
+                只能上传xlsx/csv文件，且文件大小不超过50M
+              </div>
+            </el-upload>
+
+            <el-button type="primary" @click="uploadClick" >确认上传</el-button>
           </el-tab-pane>
           <!--    limit是限制最多可上传文件的个数；action的地址是将文件传给后台的接口地址； -->
           <!--    fileList是选择的文件的全部信息，在事件中作为参数传进去，可以查看其内容；-->
@@ -51,7 +112,8 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         return{
           activeName: 'first',
           limitNum: 5,//最多上传五个文件
-          fileList: []
+          fileList: [],
+          x:0,//0激活cell上传，1激活kpi上传，2激活prb上传，3激活mro上传
         };
       },
       methods: {
@@ -99,7 +161,10 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
             message: '文件上传成功',
             type: 'success'
           })
-          this.$refs.uploadExcel.clearFiles()// 清除上次上传记录
+          this.$refs.uploadCELL.clearFiles()// 清除上次上传记录
+          this.$refs.uploadKPI.clearFiles()
+          this.$refs.uploadPRB.clearFiles()
+          this.$refs.uploadMRO.clearFiles()
         },
         // 文件上传失败时的钩子
         handleError(err, file, fileList) {
@@ -109,8 +174,24 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           })
         },
 
-        uploadClick() {//上传文件
-          this.$refs.uploadExcel.submit()
+        active:function(x){
+          this.x = x;
+        },
+
+        uploadClick() {//上传文件手动提交
+          if(this.x == 0){
+            this.$refs.uploadCELL.submit()
+          }
+          if(this.x == 1){
+            this.$refs.uploadKPI.submit()
+          }
+          if(this.x == 2){
+            this.$refs.uploadPRB.submit()
+          }
+          if(this.x == 3){
+            this.$refs.uploadMRO.submit()
+          }
+
         },
 
         download:function(){
