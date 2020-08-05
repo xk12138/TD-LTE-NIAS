@@ -29,12 +29,12 @@ import java.util.Map;
 @RequestMapping(value = "kpi")
 public class KPIController {
 
-    @Autowired
-    KPIService kpiService;
+    @Autowired KPIService kpiService;
 
     private static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
     @RequestMapping(value = "import", consumes = "multipart/form-data;charset=utf-8")
+
     @CrossOrigin
     public ResponseEntity<String> importKPI(HttpServletRequest request, MultipartFile file) throws IOException {
         Map<String, Object> result = new HashMap<>();

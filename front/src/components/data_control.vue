@@ -126,7 +126,6 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
            console.log(file)
           const extension = file.name.substring(file.name.lastIndexOf('.') + 1)//文件后缀
           const size = file.size / 1024 / 1024
-          console.log(extension)
           if (!(extension=='xlsx'||extension=='csv')) {
             this.$notify.warning({//文件类型控制
               title: '警告',

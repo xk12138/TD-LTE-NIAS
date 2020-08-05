@@ -34,7 +34,7 @@ public class CellServicelmpl implements CellService {
                     stringBuilder.append(',');
                 }
             }
-            stringBuilder.append(" on duplicate key update 周期=15");
+            stringBuilder.append(" on duplicate key update VENDOR='华为'");
             System.out.println(stringBuilder.toString());
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }

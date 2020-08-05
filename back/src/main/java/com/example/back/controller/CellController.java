@@ -123,10 +123,12 @@ public class CellController {
                     break;
                 }
                 case 11: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setLONGITUDE((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
                 case 12: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setLATITUDE((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
@@ -135,22 +137,27 @@ public class CellController {
                     break;
                 }
                 case 14: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setAZIMUTH((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
                 case 15: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setHEIGHT((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
                 case 16: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setELECTTILT((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
                 case 17: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setMECHTILT((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
                 case 18: {
+                    cell.setCellType(CellType.NUMERIC);
                     acell.setTOTLETILT((float) ((org.apache.poi.ss.usermodel.Cell) cell).getNumericCellValue());
                     break;
                 }
