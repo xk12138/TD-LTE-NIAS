@@ -1,6 +1,8 @@
 package com.example.back.model;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -10,7 +12,7 @@ public class MROData {
 
     @Id
     @Column(name = "TimeStamp")
-    private Date TimeStamp;
+    private String TimeStamp;
 
     @Id
     @Column(name = "ServingSector")
@@ -21,16 +23,42 @@ public class MROData {
     private String InterferingSector;
 
     @Column(name = "LteScRSRP")
-    private Integer LteScRSRP;
+    private Float LteScRSRP;
 
     @Column(name = "LteNcRSRP")
-    private Integer LteNcRSRP;
+    private Float LteNcRSRP;
 
     @Column(name = "LteNcEarfcn")
     private Integer LteNcEarfcn;
 
     @Column(name = "LteNcPci")
     private Integer LteNcPci;
+
+    public static String toKeys() {
+        StringBuilder s = new StringBuilder();
+        s.append("(");
+        s.append("TimeStamp").append(",");
+        s.append("ServingSector").append(",");
+        s.append("InterferingSector").append(",");
+        s.append("LteScRSRP").append(",");
+        s.append("LteNcRSRP").append(",");
+        s.append("LteNcEarfcn").append(",");
+        s.append("LteNcPci").append(")");
+
+        return s.toString();
+    }
+
+    public String toMsg() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return "(\'" + TimeStamp + "\'," +
+                "\'" + ServingSector + "\'," +
+                "\'" + InterferingSector + "\'," +
+                "\'" + LteScRSRP + "\'," +
+                "\'" + LteNcRSRP + "\'," +
+                "\'" + LteNcEarfcn + "\'," +
+                "\'" + LteNcPci + "\')";
+
+    }
 
     @Override
     public String toString() {
@@ -45,11 +73,11 @@ public class MROData {
                 '}';
     }
 
-    public Date getTimeStamp() {
+    public String getTimeStamp() {
         return TimeStamp;
     }
 
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         TimeStamp = timeStamp;
     }
 
@@ -69,19 +97,19 @@ public class MROData {
         InterferingSector = interferingSector;
     }
 
-    public Integer getLteScRSRP() {
+    public Float getLteScRSRP() {
         return LteScRSRP;
     }
 
-    public void setLteScRSRP(Integer lteScRSRP) {
+    public void setLteScRSRP(Float lteScRSRP) {
         LteScRSRP = lteScRSRP;
     }
 
-    public Integer getLteNcRSRP() {
+    public Float getLteNcRSRP() {
         return LteNcRSRP;
     }
 
-    public void setLteNcRSRP(Integer lteNcRSRP) {
+    public void setLteNcRSRP(Float lteNcRSRP) {
         LteNcRSRP = lteNcRSRP;
     }
 

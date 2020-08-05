@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "tbcell")
@@ -26,19 +28,19 @@ public class Cell {
     private String ENODEB_NAME;
 
     @Column(name = "EARFCN")
-    private Float EARFCN;
+    private Integer EARFCN;
 
     @Column(name = "PCI")
-    private Float PCI;
+    private Integer PCI;
 
     @Column(name = "PSS")
-    private Float PSS;
+    private Integer PSS;
 
     @Column(name = "SSS")
-    private Float SSS;
+    private Integer SSS;
 
     @Column(name = "TAC")
-    private Float TAC;
+    private Integer TAC;
 
     @Column(name = "VENDOR")
     private String VENDOR;
@@ -66,6 +68,55 @@ public class Cell {
 
     @Column(name = "TOTLETILT")
     private Float TOTLETILT;
+
+    public static String toKeys() {
+        StringBuilder s = new StringBuilder();
+        s.append("(");
+        s.append("CITY").append(",");
+        s.append("SECTOR_ID").append(",");
+        s.append("SECTOR_NAME").append(",");
+        s.append("ENODEBID").append(",");
+        s.append("ENODEB_NAME").append(",");
+        s.append("EARFCN").append(",");
+        s.append("PCI").append(",");
+        s.append("PSS").append(",");
+        s.append("SSS").append(",");
+        s.append("TAC").append(",");
+        s.append("VENDOR").append(",");
+        s.append("LONGITUDE").append(",");
+        s.append("LATITUDE").append(",");
+        s.append("STYLE").append(",");
+        s.append("AZIMUTH").append(",");
+        s.append("HEIGHT").append(",");
+        s.append("ELECTTILT").append(",");
+        s.append("MECHTILT").append(",");
+        s.append("TOTLETILT").append(")");
+
+        return s.toString();
+    }
+
+    public String toMsg() {
+        return "(\'" + CITY + "\'," +
+                "\'" + SECTOR_ID + "\'," +
+                "\'" + SECTOR_NAME + "\'," +
+                "\'" + ENODEBID + "\'," +
+                "\'" + ENODEB_NAME + "\'," +
+                "\'" + EARFCN + "\'," +
+                "\'" + PCI + "\'," +
+                "\'" + PSS + "\'," +
+                "\'" + SSS + "\'," +
+                "\'" + TAC + "\'," +
+                "\'" + VENDOR + "\'," +
+                "\'" + LONGITUDE + "\'," +
+                "\'" + LATITUDE + "\'," +
+                "\'" + STYLE + "\'," +
+                "\'" + AZIMUTH + "\'," +
+                "\'" + HEIGHT + "\'," +
+                "\'" + ELECTTILT + "\'," +
+                "\'" + MECHTILT + "\'," +
+                "\'" + TOTLETILT + "\')" ;
+
+    }
 
     @Override
     public String toString() {
@@ -132,43 +183,43 @@ public class Cell {
         this.ENODEB_NAME = ENODEB_NAME;
     }
 
-    public Float getEARFCN() {
+    public Integer getEARFCN() {
         return EARFCN;
     }
 
-    public void setEARFCN(Float EARFCN) {
+    public void setEARFCN(Integer EARFCN) {
         this.EARFCN = EARFCN;
     }
 
-    public Float getPCI() {
+    public Integer getPCI() {
         return PCI;
     }
 
-    public void setPCI(Float PCI) {
+    public void setPCI(Integer PCI) {
         this.PCI = PCI;
     }
 
-    public Float getPSS() {
+    public Integer getPSS() {
         return PSS;
     }
 
-    public void setPSS(Float PSS) {
+    public void setPSS(Integer PSS) {
         this.PSS = PSS;
     }
 
-    public Float getSSS() {
+    public Integer getSSS() {
         return SSS;
     }
 
-    public void setSSS(Float SSS) {
+    public void setSSS(Integer SSS) {
         this.SSS = SSS;
     }
 
-    public Float getTAC() {
+    public Integer getTAC() {
         return TAC;
     }
 
-    public void setTAC(Float TAC) {
+    public void setTAC(Integer TAC) {
         this.TAC = TAC;
     }
 
