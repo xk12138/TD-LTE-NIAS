@@ -70,7 +70,7 @@ public class CellController {
             return null;
         }
         int columns = row.getPhysicalNumberOfCells();
-        if(columns != 18) {
+        if(columns != 19) {
             return null;
         }
         Cell acell = new Cell();
