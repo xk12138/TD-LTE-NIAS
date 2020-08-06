@@ -8,4 +8,6 @@ public interface CellService {
 
     void importCell(List<Cell> Cells);
 
+    void exportCELL(String filePath);
+
 }

@@ -2,6 +2,7 @@ package com.example.back.service.impl;
 
 import com.example.back.model.Cell;
 import com.example.back.repository.CellRepository;
+import com.example.back.repository.KPIRepository;
 import com.example.back.service.CellService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class CellServicelmpl implements CellService {
 
     private static final int batch = 50;
 
+    @Autowired
+    CellRepository cellRepository;
     @PersistenceContext
     private EntityManager e;
 
@@ -39,4 +42,14 @@ public class CellServicelmpl implements CellService {
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }
     }
+
+    @Override
+    public void exportCELL(String filePath) {
+        //导出CELL表
+        try {
+            cellRepository.export(filePath);
+        } catch (Exception e) {
+        }
+    }
+
 }

@@ -96,8 +96,23 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           <!--    limit是限制最多可上传文件的个数；action的地址是将文件传给后台的接口地址； -->
           <!--    fileList是选择的文件的全部信息，在事件中作为参数传进去，可以查看其内容；-->
           <el-tab-pane label="下载数据" name="second">
-            <el-button type="success" icon="el-icon-download" @click="download">加载tbKPI</el-button>
-            <a href="../static/tbkpi.txt" download="tbKPI.txt">下载</a>
+            <el-row>
+              <el-button type="success" icon="el-icon-download" @click="download(0)">加载tbCell</el-button>
+              <a href="../static/tbcell.txt" download="tbCell.txt">下载tbCell</a>
+
+              <el-button type="success" icon="el-icon-download" @click="download(1)">加载tbKPI</el-button>
+              <a href="../static/tbkpi.txt" download="tbKPI.txt">下载tbKPI</a>
+            </el-row>
+
+            <el-row>
+              <el-button type="success" icon="el-icon-download" @click="download(2)">加载tbPRB</el-button>
+              <a href="../static/tbprb.txt" download="tbPRB.txt">下载tbPRB</a>
+
+              <el-button type="success" icon="el-icon-download" @click="download(3)">加载tbMRO</el-button>
+              <a href="../static/tbmro.txt" download="tbMRO.txt">下载tbMRO</a>
+            </el-row>
+
+
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -195,10 +210,24 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
 
         },
 
-        download:function(){
+        download:function(x){
           var that = this;
+          var URL = '';
+          if(x==0){
+            URL = '/api/cell/export';
+          }
+          else if(x==1){
+            URL = '/api/kpi/export';
+          }
+          else if(x==2){
+            URL = '/api/prb/export';
+          }
+          else if(x==3){
+            URL = '/api/mro/export';
+          }
           $.ajax({
-            url: '/api/kpi/export',
+            //url: '/api/kpi/export',
+            url: URL,
             success: function(res) {
               console.log(res);
             }
@@ -217,7 +246,7 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
     }
 </script>
 
-<style scoped>
+<style>
   .el-header{
     background-color: #B3C0D1;
     color: #333;
@@ -233,5 +262,10 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
     text-align: center;
     line-height: 20px;
     height: 600px;
+  }
+
+  .el-row {
+    margin-bottom: 50px;
+
   }
 </style>

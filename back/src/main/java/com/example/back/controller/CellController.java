@@ -2,6 +2,7 @@ package com.example.back.controller;
 
 import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
+import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.Cell;
 import com.example.back.service.CellService;
 import org.apache.poi.ss.usermodel.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -60,6 +62,20 @@ public class CellController {
         }
 
         cellService.importCell(cells);
+
+        result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
+    @RequestMapping(value = "export")
+    public ResponseEntity<String> exportCELL(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        String filePath = ApplicationConfiguration.outfileDir + "tbcell.txt";
+        File file = new File(filePath);
+        if(!file.exists()) {
+            cellService.exportCELL(filePath);
+        }
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
