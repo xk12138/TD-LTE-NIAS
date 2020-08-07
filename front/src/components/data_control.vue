@@ -75,7 +75,7 @@ version1.1:2020/8/6，重新布局页面，完成接口
                   :file-list="fileList"
 
                 >
-                  <el-button size="small" plain @click="active(2)">选择PRB文件</el-button>
+                  <el-button size="small" plain @click=" active(2)">选择PRB文件</el-button>
                   <div slot="tip" class="el-upload__tip">
                     只能上传xlsx/csv文件，且文件大小不超过50M
                   </div>
@@ -96,7 +96,7 @@ version1.1:2020/8/6，重新布局页面，完成接口
                   :file-list="fileList"
 
                 >
-                  <el-button size="small" plain @contextmenu="active(3)">选择MRO文件</el-button>
+                  <el-button size="small" plain @click =" active(3)">选择MRO文件</el-button>
                   <div slot="tip" class="el-upload__tip">
                     只能上传xlsx/csv文件，且文件大小不超过50M
                   </div>
@@ -224,9 +224,11 @@ version1.1:2020/8/6，重新布局页面，完成接口
             this.$refs.uploadKPI.submit()
           }
           if(this.x == 2){
+            console.log(this.x)
             this.$refs.uploadPRB.submit()
           }
           if(this.x == 3){
+            console.log(this.x)
             this.$refs.uploadMRO.submit()
           }
 

@@ -26,8 +26,11 @@ public class CellServicelmpl implements CellService {
     @Transactional
     public void importCell(List<Cell> cells) {
         int page = cells.size() / batch;
+        System.out.println("啥bug啊"+cells);
         for (int i = 0; i < page; i++) {
             StringBuilder stringBuilder = new StringBuilder();
+//            StringBuilder stringBuilder_del = new StringBuilder();//删除语句
+//            stringBuilder_del.append("delete from tbcell where SECTOR_ID=");
             stringBuilder.append("insert into tbCell ").append(Cell.toKeys()).append(" values ");
             List<Cell> temp = cells.subList(i * batch, (i + 1) * batch);
             for (int j = 0; j < temp.size(); j++) {
@@ -37,7 +40,13 @@ public class CellServicelmpl implements CellService {
                     stringBuilder.append(',');
                 }
             }
-            stringBuilder.append(" on duplicate key update VENDOR='华为'");
+            stringBuilder.append(" on duplicate key update CITY=VALUES(CITY)," +
+                    "SECTOR_NAME=VALUES(SECTOR_NAME),ENODEBID=VALUES(ENODEBID)," +
+                    "ENODEB_NAME=VALUES(ENODEB_NAME),EARFCN=VALUES(EARFCN)," +
+                    "PCI=VALUES(PCI),PSS=VALUES(PSS),SSS=VALUES(SSS),TAC=VALUES(TAC)," +
+                    "VENDOR=VALUES(VENDOR),LONGITUDE=VALUES(LONGITUDE),LATITUDE=VALUES(LATITUDE)," +
+                    "STYLE=VALUES(STYLE),AZIMUTH=VALUES(AZIMUTH),HEIGHT=VALUES(HEIGHT)," +
+                    "ELECTTILT=VALUES(ELECTTILT),MECHTILT=VALUES(MECHTILT),TOTLETILT=VALUES(TOTLETILT);");
             System.out.println(stringBuilder.toString());
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }

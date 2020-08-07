@@ -57,6 +57,7 @@ public class MRODataController {
         List<MROData> mrods = new ArrayList<>();
         int rows = sheet.getLastRowNum();
         for(int i = 1; i < rows; i++) {
+            System.out.println(mrods);
             //对于每一行都进行创建然后放入列表中
             Row row = sheet.getRow(i);
             MROData mro = getMROData(row);

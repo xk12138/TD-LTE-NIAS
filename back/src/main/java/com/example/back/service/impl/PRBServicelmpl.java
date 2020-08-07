@@ -36,7 +36,7 @@ public class PRBServicelmpl implements PRBService {
                     stringBuilder.append(',');
                 }
             }
-            stringBuilder.append(" on duplicate key update 周期=15");
+            stringBuilder.append(" on duplicate key update 周期=15;");
             System.out.println(stringBuilder.toString());
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }
