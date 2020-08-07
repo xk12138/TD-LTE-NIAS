@@ -1,6 +1,8 @@
 <!--author:AK
 data_control.vue：数据控制页面
-version1.0:2020/8/3，完成构建页面，没有添加接口-->
+version1.0:2020/8/3，完成构建页面，没有添加接口
+version1.1:2020/8/6，重新布局页面，完成接口
+-->
 <template>
   <el-container>
     <el-header>
@@ -10,106 +12,126 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
     <el-container>
       <el-main>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="上传数据" name="first">上传数据
-            <el-upload
-              ref="uploadCELL"
-              action = 'http://127.0.0.1:8080/cell/import'
-              :limit="limitNum"
-              :auto-upload="false"
-              accept=".xlsx,.csv"
-              :before-upload="beforeUploadFile"
-              :on-change="fileChange"
-              :on-exceed="exceedFile"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-              :file-list="fileList"
+          <el-tab-pane label="上传数据" name="first">
+            <el-row justify="center" type="flex">
 
-            >
-              <el-button size="small" plain @click="active(0)">选择Cell文件</el-button>
-              <div slot="tip" class="el-upload__tip">
-                只能上传xlsx/csv文件，且文件大小不超过50M
-              </div>
-            </el-upload>
+              <el-col :span="6">
+                <el-upload
+                  ref="uploadCELL"
+                  action = 'http://127.0.0.1:8080/cell/import'
+                  :limit="limitNum"
+                  :auto-upload="false"
+                  accept=".xlsx,.csv"
+                  :before-upload="beforeUploadFile"
+                  :on-change="fileChange"
+                  :on-exceed="exceedFile"
+                  :on-success="handleSuccess"
+                  :on-error="handleError"
+                  :file-list="fileList"
 
-            <el-upload
-              ref="uploadKPI"
-              action = 'http://127.0.0.1:8080/kpi/import'
-              :limit="limitNum"
-              :auto-upload="false"
-              accept=".xlsx,.csv"
-              :before-upload="beforeUploadFile"
-              :on-change="fileChange"
-              :on-exceed="exceedFile"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-              :file-list="fileList"
+                >
+                  <el-button size="small" plain @click="active(0)">选择Cell文件</el-button>
+                  <div slot="tip" class="el-upload__tip">
+                    只能上传xlsx/csv文件，且文件大小不超过50M
+                  </div>
+                </el-upload>
+              </el-col>
+              <el-col :span="6">
+                <el-upload
+                  ref="uploadKPI"
+                  action = 'http://127.0.0.1:8080/kpi/import'
+                  :limit="limitNum"
+                  :auto-upload="false"
+                  accept=".xlsx,.csv"
+                  :before-upload="beforeUploadFile"
+                  :on-change="fileChange"
+                  :on-exceed="exceedFile"
+                  :on-success="handleSuccess"
+                  :on-error="handleError"
+                  :file-list="fileList"
 
-            >
-              <el-button size="small" plain @click="active(1)">选择KPI文件</el-button>
-              <div slot="tip" class="el-upload__tip">
-                只能上传xlsx/csv文件，且文件大小不超过50M
-              </div>
-            </el-upload>
+                >
+                  <el-button size="small" plain @click="active(1)">选择KPI文件</el-button>
+                  <div slot="tip" class="el-upload__tip">
+                    只能上传xlsx/csv文件，且文件大小不超过50M
+                  </div>
+                </el-upload>
+              </el-col>
 
-            <el-upload
-              ref="uploadPRB"
-              action = 'http://127.0.0.1:8080/prb/import'
-              :limit="limitNum"
-              :auto-upload="false"
-              accept=".xlsx,.csv"
-              :before-upload="beforeUploadFile"
-              :on-change="fileChange"
-              :on-exceed="exceedFile"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-              :file-list="fileList"
+            </el-row>
+            <el-row justify="center" type="flex">
+              <el-col :span="6">
+                <el-upload
+                  ref="uploadPRB"
+                  action = 'http://127.0.0.1:8080/prb/import'
+                  :limit="limitNum"
+                  :auto-upload="false"
+                  accept=".xlsx,.csv"
+                  :before-upload="beforeUploadFile"
+                  :on-change="fileChange"
+                  :on-exceed="exceedFile"
+                  :on-success="handleSuccess"
+                  :on-error="handleError"
+                  :file-list="fileList"
 
-            >
-              <el-button size="small" plain @click="active(2)">选择PRB文件</el-button>
-              <div slot="tip" class="el-upload__tip">
-                只能上传xlsx/csv文件，且文件大小不超过50M
-              </div>
-            </el-upload>
+                >
+                  <el-button size="small" plain @click="active(2)">选择PRB文件</el-button>
+                  <div slot="tip" class="el-upload__tip">
+                    只能上传xlsx/csv文件，且文件大小不超过50M
+                  </div>
+                </el-upload>
+              </el-col>
+              <el-col :span="6">
+                <el-upload
+                  ref="uploadMRO"
+                  action = 'http://127.0.0.1:8080/mro/import'
+                  :limit="limitNum"
+                  :auto-upload="false"
+                  accept=".xlsx,.csv"
+                  :before-upload="beforeUploadFile"
+                  :on-change="fileChange"
+                  :on-exceed="exceedFile"
+                  :on-success="handleSuccess"
+                  :on-error="handleError"
+                  :file-list="fileList"
 
-            <el-upload
-              ref="uploadMRO"
-              action = 'http://127.0.0.1:8080/mro/import'
-              :limit="limitNum"
-              :auto-upload="false"
-              accept=".xlsx,.csv"
-              :before-upload="beforeUploadFile"
-              :on-change="fileChange"
-              :on-exceed="exceedFile"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-              :file-list="fileList"
+                >
+                  <el-button size="small" plain @contextmenu="active(3)">选择MRO文件</el-button>
+                  <div slot="tip" class="el-upload__tip">
+                    只能上传xlsx/csv文件，且文件大小不超过50M
+                  </div>
+                </el-upload>
+              </el-col>
+            </el-row>
 
-            >
-              <el-button size="small" plain @contextmenu="active(3)">选择MRO文件</el-button>
-              <div slot="tip" class="el-upload__tip">
-                只能上传xlsx/csv文件，且文件大小不超过50M
-              </div>
-            </el-upload>
 
             <el-button type="primary" @click="uploadClick" >确认上传</el-button>
           </el-tab-pane>
           <!--    limit是限制最多可上传文件的个数；action的地址是将文件传给后台的接口地址； -->
           <!--    fileList是选择的文件的全部信息，在事件中作为参数传进去，可以查看其内容；-->
           <el-tab-pane label="下载数据" name="second">
-            <el-row>
-              <el-button type="success" icon="el-icon-download" @click="download(0)">加载tbCell</el-button>
-              <a href="../static/tbcell.txt" download="tbCell.txt">下载tbCell</a>
+            <el-row justify="center" type="flex">
+              <el-col :span="6">
+                <el-button type="success" icon="el-icon-download" @click="download(0)">加载tbCell</el-button>
+                <a href="../static/tbcell.txt" download="tbCell.txt">下载tbCell</a>
+              </el-col>
+              <el-col :span="6">
+                <el-button type="success" icon="el-icon-download" @click="download(1)">加载tbKPI</el-button>
+                <a href="../static/tbkpi.txt" download="tbKPI.txt">下载tbKPI</a>
+              </el-col>
 
-              <el-button type="success" icon="el-icon-download" @click="download(1)">加载tbKPI</el-button>
-              <a href="../static/tbkpi.txt" download="tbKPI.txt">下载tbKPI</a>
             </el-row>
 
-            <el-row>
-              <el-button type="success" icon="el-icon-download" @click="download(2)">加载tbPRB</el-button>
-              <a href="../static/tbprb.txt" download="tbPRB.txt">下载tbPRB</a>
+            <el-row justify="center" type="flex">
+              <el-col :span="6">
+                <el-button type="success" icon="el-icon-download" @click="download(2)">加载tbPRB</el-button>
+                <a href="../static/tbprb.txt" download="tbPRB.txt">下载tbPRB</a>
+              </el-col>
+              <el-col :span="6">
+                <el-button type="success" icon="el-icon-download" @click="download(3)">加载tbMRO</el-button>
+                <a href="../static/tbmro.txt" download="tbMRO.txt">下载tbMRO</a>
+              </el-col>
 
-              <el-button type="success" icon="el-icon-download" @click="download(3)">加载tbMRO</el-button>
-              <a href="../static/tbmro.txt" download="tbMRO.txt">下载tbMRO</a>
             </el-row>
 
 

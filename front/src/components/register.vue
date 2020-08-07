@@ -7,8 +7,14 @@ version1.1:2020/8/3，更改布局-->
     <el-container>
       <el-header>注册NIAS系统账户</el-header>
       <el-main>
-        <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
-        <el-input type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
+        <div>
+          用户名：<el-input v-model="user.username" placeholder="请输入用户名"></el-input>
+        </div>
+
+        <div>
+          密码：<el-input type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
+        </div>
+
         <el-button type="primary" @click="register">注册</el-button>
       </el-main>
     </el-container>

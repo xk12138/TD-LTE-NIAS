@@ -7,8 +7,13 @@ version1.1:2020/8/3，更改布局-->
     <el-container>
       <el-header>欢迎使用NIAS系统</el-header>
       <el-main>
-        <el-input v-model="user.username" placeholder="请输入用户名"></el-input>
-        <el-input type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
+        <div>
+          用户名：<el-input style="width: 300px" v-model="user.username" placeholder="请输入用户名"></el-input>
+        </div>
+        <div>
+          密码：<el-input style="width: 300px" type="password" v-model="user.password" placeholder="请输入密码" show-password:true></el-input>
+        </div>
+
         <el-button type="primary" @click="login">登录</el-button>
         <el-button type="primary" @click="register">注册</el-button>
       </el-main>
@@ -67,16 +72,19 @@ export default {
 .el-header,
 .el-footer {
   background-color: #b3c0d1;
-  color: #333;
+  color: midnightblue;
   text-align: center;
   line-height: 60px;
+  font-family: "Arial Black";
+  font-size: larger;
 }
 
 .el-main {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  line-height: 60px;
   height: 600px;
 }
 </style>

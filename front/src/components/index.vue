@@ -7,10 +7,20 @@ version1.1:2020/8/3，更改布局-->
     <el-container>
       <el-header>NIAS系统功能</el-header>
       <el-main>
-        <el-button type="primary" icon="el-icon-folder" @click="dataControl">数据管理</el-button>
-        <el-button type="primary" icon="el-icon-search" @click="infoSearch">信息查询</el-button>
-        <el-button type="primary" icon="el-icon-ice-cream-round" @click="C2I">主邻小区C2I干扰分析</el-button>
-        <el-button type="primary" icon="el-icon-lollipop" @click="triple">查询重叠覆盖干扰三元组</el-button>
+
+        <el-row>
+          <el-button type="primary" icon="el-icon-folder" @click="dataControl">数据管理</el-button>
+        </el-row>
+        <el-row>
+          <el-button type="primary" icon="el-icon-search" @click="infoSearch">信息查询</el-button>
+        </el-row>
+        <el-row>
+          <el-button type="primary" icon="el-icon-ice-cream-round" @click="C2I">主邻小区C2I干扰分析</el-button>
+        </el-row>
+        <el-row>
+          <el-button type="primary" icon="el-icon-lollipop" @click="triple">查询重叠覆盖干扰三元组</el-button>
+        </el-row>
+
       </el-main>
     </el-container>
   </div>
@@ -64,16 +74,22 @@ version1.1:2020/8/3，更改布局-->
   .el-header,
   .el-footer {
     background-color: #b3c0d1;
-    color: #333;
+    color: midnightblue;
     text-align: center;
     line-height: 60px;
+    font-family: "Arial Black";
+    font-size: larger;
   }
 
   .el-main {
     background-color: #e9eef3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 60px;
     height: 600px;
+  }
+
+  .el-row {
+    margin-bottom: 60px;
   }
 </style>
