@@ -8,4 +8,6 @@ public interface PRBService {
 
     void importPRB(List<PRB> prbs);
 
+    void exportPRB(String filePath);
+
 }

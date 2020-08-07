@@ -8,4 +8,6 @@ public interface MRODataService {
 
     void importMROData(List<MROData> mrods);
 
+    void exportMRO(String filePath);
+
 }

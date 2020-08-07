@@ -42,4 +42,13 @@ public class PRBServicelmpl implements PRBService {
         }
     }
 
+    @Override
+    public void exportPRB(String filePath) {
+        //导出PRB表
+        try {
+            prbRepository.export(filePath);
+        } catch (Exception e) {
+        }
+    }
+
 }

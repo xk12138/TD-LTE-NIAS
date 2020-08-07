@@ -41,4 +41,13 @@ public class MRODataServicelmpl implements MRODataService {
             e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }
     }
+
+    @Override
+    public void exportMRO(String filePath) {
+        //导出MRO表
+        try {
+            mrodataRepository.export(filePath);
+        } catch (Exception e) {
+        }
+    }
 }

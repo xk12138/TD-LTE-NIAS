@@ -22,4 +22,7 @@ public interface PRBRepository extends JpaRepository<PRB, PRBKey> {
 //            " 起始时间, 60 as 周期， 网元名称")
 //    void createIfNotExists();
 
+    @Query(value = "select * from tbprb into outfile :file_path", nativeQuery = true)
+    void export(@Param(value = "file_path") String filePath);
+
 }
