@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CellServicelmpl implements CellService {
@@ -60,5 +62,19 @@ public class CellServicelmpl implements CellService {
         } catch (Exception e) {
         }
     }
+
+    @Override
+    public List<Map<String, Object>> search_by_sector(String keyword) {
+        String sql = "select " + "*" + " from tbCell where SECTOR_ID=" + keyword + " or SECTOR_NAME=" + keyword ;
+        return e.createNativeQuery(sql).getResultList();
+    }
+
+    @Override
+    public List<Map<String, Object>> search_by_enodeB(String keyword) {
+        String sql = "select " + "*" + " from tbCell where eNodeBID=" + keyword + " or eNodeBNAME=" + keyword +"GROUP BY SECTOR_ID";
+        return e.createNativeQuery(sql).getResultList();
+    }
+
+
 
 }

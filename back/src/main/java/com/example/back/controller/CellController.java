@@ -5,6 +5,7 @@ import com.example.back.common.WebTools;
 import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.Cell;
 import com.example.back.service.CellService;
+import com.example.back.service.CookieService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "cell")
@@ -29,6 +30,8 @@ public class CellController {
 
     @Autowired
     CellService cellService;
+    @Autowired
+    CookieService cookieService;
 
     @RequestMapping(value = "import", consumes = "multipart/form-data;charset=utf-8")
     @CrossOrigin
@@ -78,6 +81,44 @@ public class CellController {
         }
 
         result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
+    @RequestMapping(value = "search")
+    public ResponseEntity<String> search_by_sector(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+        String keyword = request.getParameter("keyword");
+
+
+        result.put("list", cellService.search_by_sector(keyword));
+        result.put("code", ErrorCode.SUCCESS.getValue());
+
+        return WebTools.buildJsonResponse(result);
+    }
+
+    @RequestMapping(value = "search")
+    public ResponseEntity<String> search_by_enodeB(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+        String keyword = request.getParameter("keyword");
+
+
+        result.put("list", cellService.search_by_enodeB(keyword));
+        result.put("code", ErrorCode.SUCCESS.getValue());
+
         return WebTools.buildJsonResponse(result);
     }
 
