@@ -4,6 +4,7 @@ import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
 import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.KPI;
+import com.example.back.service.CookieService;
 import com.example.back.service.KPIService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -22,16 +23,16 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "kpi")
 public class KPIController {
 
-    @Autowired KPIService kpiService;
+    @Autowired
+    KPIService kpiService;
+    @Autowired
+    CookieService cookieService;
 
     private static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -88,6 +89,33 @@ public class KPIController {
         }
 
         result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
+    @RequestMapping(value = "search")
+    public ResponseEntity<String> search(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+        String keyword = request.getParameter("keyword");
+        String name = request.getParameter("name");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date startTime = null, endTime = null;
+        try {
+            startTime = dateFormat.parse(request.getParameter("start_time"));
+            endTime = dateFormat.parse(request.getParameter("end_time"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        result.put("list", kpiService.search(keyword, name, startTime, endTime));
+        result.put("code", ErrorCode.SUCCESS.getValue());
+
         return WebTools.buildJsonResponse(result);
     }
 

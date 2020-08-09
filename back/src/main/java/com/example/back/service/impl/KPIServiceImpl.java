@@ -11,7 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class KPIServiceImpl implements KPIService {
@@ -45,7 +47,7 @@ public class KPIServiceImpl implements KPIService {
                     "eNodeB触发的E_RAB异常释放总次数=VALUES(eNodeB触发的E_RAB异常释放总次数)," +
                     "小区切换出E_RAB异常释放总次数=VALUES(小区切换出E_RAB异常释放总次数)," +
                     "E_RAB掉线率_新=VALUES(E_RAB掉线率_新),无线接通率ay=VALUES(无线接通率ay)," +
-                    "eNodeB发起的S1_RESET导致的UE_Context释放次数=VALUES(0eNodeB发起的S1_RESET导致的UE_Context释放次数)," +
+                    "eNodeB发起的S1_RESET导致的UE_Context释放次数=VALUES(eNodeB发起的S1_RESET导致的UE_Context释放次数)," +
                     "UE_Context异常释放次数=VALUES(UE_Context异常释放次数),UE_Context建立成功总次数=VALUES(UE_Context建立成功总次数)," +
                     "无线掉线率=VALUES(无线掉线率)," +
                     "eNodeB内异频切换出成功次数=VALUES(eNodeB内异频切换出成功次数)," +
@@ -90,6 +92,12 @@ public class KPIServiceImpl implements KPIService {
             kpiRepository.export(filePath);
         } catch (Exception e) {
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> search(String keyword, String name, Date startTime, Date endTime) {
+        String sql = "select " + keyword + " from tbKPI where 网元名称=:网元名称 and timestampdiff(day, :start_time, 起始时间)>=0 and timestampdiff(day, :end_time, 起始时间)<=0";
+        return e.createNativeQuery(sql).setParameter("网元名称", name).setParameter("start_time", startTime).setParameter("end_time", endTime).getResultList();
     }
 
 }
