@@ -10,4 +10,7 @@ public interface PRBService {
 
     void exportPRB(String filePath);
 
+    void generate();
+
+    void exportPRBnew(String filePath);
 }

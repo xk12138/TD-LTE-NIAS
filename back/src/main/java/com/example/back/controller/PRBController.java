@@ -5,6 +5,7 @@ import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
 import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.PRB;
+import com.example.back.service.CookieService;
 import com.example.back.service.PRBService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -33,6 +34,8 @@ public class PRBController {
 
     @Autowired
     PRBService prbService;
+    @Autowired
+    CookieService cookieService;
 
     private static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -82,6 +85,29 @@ public class PRBController {
         if(!file.exists()) {
             prbService.exportPRB(filePath);
         }
+
+        result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
+    @RequestMapping(value = "generate")
+    public ResponseEntity<String> generate(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+
+        String filePath = ApplicationConfiguration.outfileDir + "tbprbnew.txt";
+        File file = new File(filePath);
+        if(!file.exists()) {
+            prbService.generate();
+            prbService.exportPRBnew(filePath);
+        }
+
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
@@ -504,7 +530,7 @@ public class PRBController {
                     prb.set第94个PRB上检测到的干扰噪声的平均值((int) cell.getNumericCellValue());
                     break;
                 }
-                case 109: {
+                case 100: {
                     prb.set第95个PRB上检测到的干扰噪声的平均值((int) cell.getNumericCellValue());
                     break;
                 }
