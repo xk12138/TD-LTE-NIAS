@@ -104,8 +104,8 @@ public class PRBController {
         String filePath = ApplicationConfiguration.outfileDir + "tbprbnew.txt";
         File file = new File(filePath);
         if(!file.exists()) {
-            prbService.exportPRB(filePath);
-            prbService.exportPRBnew();
+            prbService.generate();
+            prbService.exportPRBnew(filePath);
         }
 
 

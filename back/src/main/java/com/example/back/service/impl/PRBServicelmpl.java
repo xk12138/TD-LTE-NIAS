@@ -2,6 +2,7 @@ package com.example.back.service.impl;
 
 import com.example.back.model.PRB;
 import com.example.back.repository.PRBRepository;
+import com.example.back.repository.PRBnewRepository;
 import com.example.back.service.KPIService;
 import com.example.back.service.PRBService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class PRBServicelmpl implements PRBService {
 
     @Autowired
     PRBRepository prbRepository;
+    @Autowired
+    PRBnewRepository prBnewRepository;
     @PersistenceContext
     private EntityManager e;
 
@@ -167,8 +170,12 @@ public class PRBServicelmpl implements PRBService {
     }
 
     @Override
-    public void exportPRBnew() {
-
+    public void exportPRBnew(String filePath) {
+        //导出PRBnew表
+        try {
+            prBnewRepository.exportPRBnew(filePath);
+        } catch (Exception e) {
+        }
     }
 
 }

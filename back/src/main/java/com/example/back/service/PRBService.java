@@ -12,5 +12,5 @@ public interface PRBService {
 
     void generate();
 
-    void exportPRBnew();
+    void exportPRBnew(String filePath);
 }
