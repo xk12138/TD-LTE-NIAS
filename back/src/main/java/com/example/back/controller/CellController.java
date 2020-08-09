@@ -84,7 +84,7 @@ public class CellController {
         return WebTools.buildJsonResponse(result);
     }
 
-    @RequestMapping(value = "search")
+    @RequestMapping(value = "search_by_sector")
     public ResponseEntity<String> search_by_sector(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
 
@@ -103,7 +103,7 @@ public class CellController {
         return WebTools.buildJsonResponse(result);
     }
 
-    @RequestMapping(value = "search")
+    @RequestMapping(value = "search_by_enodeB")
     public ResponseEntity<String> search_by_enodeB(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
 
