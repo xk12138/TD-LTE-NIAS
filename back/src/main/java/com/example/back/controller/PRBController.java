@@ -113,6 +113,22 @@ public class PRBController {
         return WebTools.buildJsonResponse(result);
     }
 
+    @RequestMapping(value = "search")
+    public ResponseEntity<String> search(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+
+
+        result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+
     private PRB getPRB(Row row) {
         if(row == null) {
             return null;
