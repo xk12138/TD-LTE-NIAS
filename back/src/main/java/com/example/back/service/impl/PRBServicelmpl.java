@@ -165,7 +165,7 @@ public class PRBServicelmpl implements PRBService {
                 .append(" avg(第97个PRB上检测到的干扰噪声的平均值) as 第97个PRB上检测到的干扰噪声的平均值, ")
                 .append(" avg(第98个PRB上检测到的干扰噪声的平均值) as 第98个PRB上检测到的干扰噪声的平均值, ")
                 .append(" avg(第99个PRB上检测到的干扰噪声的平均值) as 第99个PRB上检测到的干扰噪声的平均值 ")
-                .append(" from tbPRB group by DATE_FORMAT(起始时间, '%Y-%m-%d %H'), 网元名称, 小区, 小区名)");
+                .append(" from tbPRB group by DATE_FORMAT(起始时间, '%Y-%m-%d %H'), 周期, 网元名称, 小区, 小区名)");
 
         e.createNativeQuery(stringBuilder.toString()).executeUpdate();
     }
