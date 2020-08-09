@@ -57,6 +57,7 @@ public class PRBServicelmpl implements PRBService {
     @Override
     @Transactional
     public void generate() {
+        e.createNativeQuery("drop table if exists tbPRBnew").executeUpdate();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("create table if not exists tbPRBnew ( select ")
                 .append(" DATE_FORMAT(起始时间, '%Y-%m-%d %H') as 起始时间, ")

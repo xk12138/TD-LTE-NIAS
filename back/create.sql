@@ -150,7 +150,7 @@ CREATE TABLE if not exists tbPRB(
 	第97个PRB上检测到的干扰噪声的平均值 INT,
 	第98个PRB上检测到的干扰噪声的平均值 INT,
 	第99个PRB上检测到的干扰噪声的平均值 INT,
-	PRIMARY KEY (小区名)
+	PRIMARY KEY (起始时间, 小区名)
 );
 
 CREATE TABLE if not exists tbPRBnew(
@@ -259,7 +259,7 @@ CREATE TABLE if not exists tbPRBnew(
 	第97个PRB上检测到的干扰噪声的平均值 INT,
 	第98个PRB上检测到的干扰噪声的平均值 INT,
 	第99个PRB上检测到的干扰噪声的平均值 INT,
-	PRIMARY KEY (小区名)
+	PRIMARY KEY (起始时间, 小区名)
 );
 
 CREATE TABLE if not exists tbC2I(
