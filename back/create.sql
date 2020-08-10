@@ -43,6 +43,15 @@ CREATE TABLE if not exists tbKPI(
 	eNB内切换出请求次数 INT,
 	PRIMARY KEY (起始时间, 小区名)
 );
+CREATE TABLE if not EXISTS tbC2Inew(
+  SCELL VARCHAR(255),
+	NCELL VARCHAR(255),
+	C2I_Mean FLOAT,
+	C2I_Std FLOAT,
+	PrC2I9 FLOAT,
+	PrbABS6 FLOAT,
+	PRIMARY KEY (SCELL,NCELL)
+)
 
 CREATE TABLE if not exists tbPRB(
     起始时间 DATETIME,
