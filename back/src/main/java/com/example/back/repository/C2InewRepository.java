@@ -9,5 +9,6 @@ import org.springframework.data.repository.query.Param;
 public interface C2InewRepository extends JpaRepository<C2Inew, C2InewKey> {
 
     @Query(value = "select * from tbC2Inew into outfile :file_path", nativeQuery = true)
-    void export(@Param(value = "file_path") String filePath);
+    void exportC2Inew(@Param(value = "file_path") String filePath);
+
 }
