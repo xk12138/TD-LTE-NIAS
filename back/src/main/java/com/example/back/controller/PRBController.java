@@ -21,10 +21,7 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "prb")
@@ -140,7 +137,19 @@ public class PRBController {
             return WebTools.buildJsonResponse(result);
         }
 
+        String keyword = request.getParameter("keyword");
+        String name = request.getParameter("name");
+        Date startTime = null, endTime = null;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH");
+        try {
+            startTime = dateFormat.parse(request.getParameter("start_time"));
+            endTime = dateFormat.parse(request.getParameter("end_time"));
+        } catch (Exception e) {
+            result.put("code", ErrorCode.OPERATE_FAILED.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
 
+        result.put("list", prbService.search(keyword, name, startTime, endTime));
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
