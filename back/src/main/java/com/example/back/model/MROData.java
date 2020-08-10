@@ -11,45 +11,43 @@ import java.util.Date;
 public class MROData {
 
     @Id
-    @Column(name = "TimeStamp")
+    @Column(name = "time_stamp")
     private String TimeStamp;
 
     @Id
-    @Column(name = "ServingSector")
+    @Column(name = "serving_sector")
     private String ServingSector;
 
     @Id
-    @Column(name = "InterferingSector")
+    @Column(name = "interfering_sector")
     private String InterferingSector;
 
-    @Column(name = "LteScRSRP")
+    @Column(name = "lte_scrsrp")
     private Float LteScRSRP;
 
-    @Column(name = "LteNcRSRP")
+    @Column(name = "lte_ncrsrp")
     private Float LteNcRSRP;
 
-    @Column(name = "LteNcEarfcn")
+    @Column(name = "lte_nc_earfcn")
     private Integer LteNcEarfcn;
 
-    @Column(name = "LteNcPci")
+    @Column(name = "lte_nc_pci")
     private Integer LteNcPci;
 
     public static String toKeys() {
         StringBuilder s = new StringBuilder();
         s.append("(");
-        s.append("TimeStamp").append(",");
-        s.append("ServingSector").append(",");
-        s.append("InterferingSector").append(",");
-        s.append("LteScRSRP").append(",");
-        s.append("LteNcRSRP").append(",");
-        s.append("LteNcEarfcn").append(",");
-        s.append("LteNcPci").append(")");
-
+        s.append("time_stamp").append(",");
+        s.append("serving_sector").append(",");
+        s.append("interfering_sector").append(",");
+        s.append("lte_scrsrp").append(",");
+        s.append("lte_ncrsrp").append(",");
+        s.append("lte_nc_earfcn").append(",");
+        s.append("lte_nc_pci").append(")");
         return s.toString();
     }
 
     public String toMsg() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return "(\'" + TimeStamp + "\'," +
                 "\'" + ServingSector + "\'," +
                 "\'" + InterferingSector + "\'," +
@@ -57,7 +55,6 @@ public class MROData {
                 "\'" + LteNcRSRP + "\'," +
                 "\'" + LteNcEarfcn + "\'," +
                 "\'" + LteNcPci + "\')";
-
     }
 
     @Override

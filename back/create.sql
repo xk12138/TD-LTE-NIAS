@@ -308,14 +308,14 @@ CREATE TABLE if not exists tbCell(
 );
 
 CREATE TABLE if not exists tbMROData(
-    TimeStamp VARCHAR(30),
-	ServingSector VARCHAR(50),
-	InterferingSector VARCHAR(50),
-	LteScRSRP FLOAT,
-	LteNcRSRP FLOAT,
-	LteNcEarfcn INT,
-	LteNcPci SMALLINT,
-	PRIMARY KEY (TimeStamp,ServingSector,InterferingSector)
+    time_stamp VARCHAR(30),
+	serving_sector VARCHAR(50),
+	interfering_sector VARCHAR(50),
+	lte_scrsrp FLOAT,
+	lte_ncrsrp FLOAT,
+	lte_nc_earfcn INT,
+	lte_nc_pci SMALLINT,
+	PRIMARY KEY (time_stamp, serving_sector, interfering_sector)
 );
 
 create table if not exists cookie (
