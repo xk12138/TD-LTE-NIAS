@@ -7,6 +7,8 @@ import App from './App'
 import router from './router'
 // 引入echarts
 import echarts from 'echarts'
+import FileSaver from "file-saver";
+import XLSX from "xlsx";
 Vue.prototype.$echarts = echarts
 
 

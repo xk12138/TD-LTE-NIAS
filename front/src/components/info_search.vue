@@ -1,7 +1,7 @@
 <!--author:AK
 info_search.vue：信息查询页面
 version1.0:2020/8/3，完成构建页面，没有添加接口
-version2.0:2020/8/10,重构页面，添加接口
+version2.0:2020/8/10,重构页面，添加接口,完成全部查询功能
 -->
 <template>
   <el-container>
@@ -23,6 +23,7 @@ version2.0:2020/8/10,重构页面，添加接口
 
             <div v-if="ifsearch0">
               <el-table
+                id="cellInfo"
                 :data="tableData1"
                 height="400"
                 border
@@ -126,7 +127,13 @@ version2.0:2020/8/10,重构页面，添加接口
                 </el-table-column>
 
               </el-table>
+
+              <div>
+                <el-button @click="exportCell" type="primary">导出小区配置信息结果</el-button>
+              </div>
+
             </div>
+
           </el-tab-pane>
           <el-tab-pane label="基站eNodeB信息查询" name="second">
 
@@ -140,6 +147,7 @@ version2.0:2020/8/10,重构页面，添加接口
 
             <div v-if="ifsearch1">
               <el-table
+                id="enodebInfo"
                 :data="tableData2"
                 height="400"
                 border
@@ -242,6 +250,11 @@ version2.0:2020/8/10,重构页面，添加接口
                   width="100">
                 </el-table-column>
               </el-table>
+
+              <div>
+                <el-button @click="exportEnodeB" type="primary">导出基站EnodeB配置信息结果</el-button>
+              </div>
+
             </div>
           </el-tab-pane>
           <el-tab-pane label="KPI指标信息查询" name="third">
@@ -309,7 +322,11 @@ version2.0:2020/8/10,重构页面，添加接口
                 value-format="yyyy-MM-dd"
                 v-model="s_e_date">
               </el-date-picker>
-              <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
+              <div ref="chart">
+                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
+                <el-button type="primary" @click="exportKPI">导出图表</el-button>
+              </div>
+
             </div>
 
             <div>
@@ -377,7 +394,9 @@ version2.0:2020/8/10,重构页面，添加接口
 </template>
 
 <script>
-import echarts from "echarts"
+import echarts from "echarts";
+import FileSaver from "file-saver";
+import XLSX from "xlsx";
     export default {
         name: "info_search",
       data(){
@@ -428,12 +447,108 @@ import echarts from "echarts"
           this.ifsearch3 = true;
         },
 
+        exportCell:function(){//导出小区配置信息
+          /* 从表生成工作簿对象 */
+          var wb = XLSX.utils.table_to_book(document.querySelector("#cellInfo"));
+          /* 获取二进制字符串作为输出 */
+          var wbout = XLSX.write(wb, {
+            bookType: "xlsx",
+            bookSST: true,
+            type: "array"
+          });
+          try {
+            FileSaver.saveAs(
+              //Blob 对象表示一个不可变、原始数据的类文件对象。
+              //Blob 表示的不一定是JavaScript原生格式的数据。
+              //File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+              //返回一个新创建的 Blob 对象，其内容由参数中给定的数组串联组成。
+              new Blob([wbout], { type: "application/octet-stream" }),
+              //设置导出文件名称
+              "tbCell_info.xlsx"
+            );
+          } catch (e) {
+            if (typeof console !== "undefined") console.log(e, wbout);
+          }
+          return wbout;
+        },
+
+        exportEnodeB:function(){//导出小区配置信息
+          /* 从表生成工作簿对象 */
+          var wb = XLSX.utils.table_to_book(document.querySelector("#enodebInfo"));
+          /* 获取二进制字符串作为输出 */
+          var wbout = XLSX.write(wb, {
+            bookType: "xlsx",
+            bookSST: true,
+            type: "array"
+          });
+          try {
+            FileSaver.saveAs(
+              //Blob 对象表示一个不可变、原始数据的类文件对象。
+              //Blob 表示的不一定是JavaScript原生格式的数据。
+              //File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+              //返回一个新创建的 Blob 对象，其内容由参数中给定的数组串联组成。
+              new Blob([wbout], { type: "application/octet-stream" }),
+              //设置导出文件名称
+              "EnodeB_info.xlsx"
+            );
+          } catch (e) {
+            if (typeof console !== "undefined") console.log(e, wbout);
+          }
+          return wbout;
+        },
+
+        exportCharts: function(fileName, pngid) {
+          if (document.querySelector(pngid)) {
+            let chartsCanvas = document
+              .querySelector(pngid)
+              .querySelectorAll("canvas")[0];
+            let mime = "image/png";
+            if (chartsCanvas) {
+              // toDataURL()是canvas对象的一种方法，用于将canvas对象转换为base64位编码
+              let imageUrl = chartsCanvas && chartsCanvas.toDataURL(mime);
+              if (navigator.userAgent.indexOf("Trident") > -1) {
+                // IE11
+                let arr = imageUrl.split(",");
+                // atob() 函数对已经使用base64编码编码的数据字符串进行解码
+                let bstr = atob(arr[1]);
+                let bstrLen = bstr.length;
+                // Uint8Array, 开辟 8 位无符号整数值的类型化数组。内容将初始化为 0
+                let u8arr = new Uint8Array(bstrLen);
+                while (bstrLen--) {
+                  // charCodeAt() 方法可返回指定位置的字符的 Unicode 编码
+                  u8arr[bstrLen] = bstr.charCodeAt(bstrLen);
+                }
+                //  msSaveOrOpenBlob 方法允许用户在客户端上保存文件，方法如同从 Internet 下载文件，这是此类文件保存到“下载”文件夹的原因
+                window.navigator.msSaveOrOpenBlob(
+                  new Blob([u8arr], { type: mime }),
+                  fileName + ".png"
+                );
+              } else {
+                // 其他浏览器
+                let $a = document.createElement("a");
+                $a.setAttribute("href", imageUrl);
+                $a.setAttribute("download", fileName);
+                $a.click();
+              }
+            }
+          }
+
+        },
+
+
+        //导出kpi
+        exportKPI() {
+          let pngid = "#kpiChart";
+          let fileName = "kpiChart";
+          this.exportCharts(fileName, pngid);
+        },
+
         showChart1:function () {
           this.$message('展示从折线图'+this.s_e_date);
         },
 
-        showChart0:function () {
-          var that = this
+        showChart0:function () {//展示KPI指标信息
+          var that = this;
           var sdate = this.s_e_date.toString().split(',')[0] + " 00:00:00";//开始日期
           var edate = this.s_e_date.toString().split(',')[1] + " 00:00:00";//结束日期
           $.ajax({
@@ -466,7 +581,7 @@ import echarts from "echarts"
           this.$router.go(-1);
         },
 
-        searchCell:function(){
+        searchCell:function(){//查询小区配置信息
           var that = this
           this.ifsearch0=true;
           $.ajax({
@@ -503,7 +618,7 @@ import echarts from "echarts"
           })
         },
 
-        searchEnodeB:function(){
+        searchEnodeB:function(){//查询基站配置信息
           var that = this
           this.ifsearch1=true;
           $.ajax({
@@ -546,7 +661,7 @@ import echarts from "echarts"
           })
         },
 
-        drawKpiChart(x,y) {
+        drawKpiChart(x,y) {//画统计柱状图
           console.log(x,y);
           let kpiChart = echarts.init(document.getElementById('kpiChart'))
           // 绘制kpi图表

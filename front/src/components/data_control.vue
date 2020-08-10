@@ -232,11 +232,9 @@ version2.2:2020/8/7，修复上传MRO表按钮无响应bug
             this.$refs.uploadKPI.submit()
           }
           if(this.x == 2){
-            console.log(this.x)
             this.$refs.uploadPRB.submit()
           }
           if(this.x == 3){
-            console.log(this.x)
             this.$refs.uploadMRO.submit()
           }
 
