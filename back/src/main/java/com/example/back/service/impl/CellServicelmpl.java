@@ -65,7 +65,8 @@ public class CellServicelmpl implements CellService {
 
     @Override
     public List<Map<String, Object>> search_by_sector(String keyword) {
-        String sql = "select " + "*" + " from tbCell where SECTOR_ID=" + keyword + " or SECTOR_NAME=" + keyword ;
+        System.out.println(keyword);
+        String sql = "select * from tbcell where SECTOR_NAME='" + keyword+ "' or SECTOR_ID='" + keyword +"'";
         return e.createNativeQuery(sql).getResultList();
     }
 

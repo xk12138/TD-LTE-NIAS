@@ -12,18 +12,18 @@ version2.0:2020/8/10,重构页面，添加接口
       <el-main>
         <el-tabs v-model="activeName" >
           <el-tab-pane label="小区配置信息查询" name="first">
-            <el-dropdown @command="handleCommand0">
-      <span class="el-dropdown-link">
-        选择小区<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">testA</el-dropdown-item>
-                <el-dropdown-item command="b">testB</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+
+            <span class="demonstration">输入小区名称或id</span>
+            <el-input style="width: 300px"
+                      placeholder="请输入小区名称或id"
+                      v-model="inputCell"
+                      clearable>
+            </el-input>
+            <el-button type="primary" @click="searchCell">查询小区信息</el-button>
+
             <div v-if="ifsearch0">
               <el-table
-                :data="tableData"
+                :data="tableData1"
                 height="400"
                 border
                 style="width: 100%">
@@ -34,24 +34,24 @@ version2.0:2020/8/10,重构页面，添加接口
                 </el-table-column>
                 <el-table-column
                   fixed
-                  prop="sector_id"
-                  label="SECTOR_ID"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  fixed
                   prop="sector_name"
                   label="SECTOR_NAME"
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeebid"
-                  label="ENODEEBID"
+                  fixed
+                  prop="sector_id"
+                  label="SECTOR_ID"
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeedname"
-                  label="ENODEED_NAME"
+                  prop="enodebid"
+                  label="ENODEBID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodebname"
+                  label="ENODEB_NAME"
                   width="100">
                 </el-table-column>
                 <el-table-column
@@ -90,6 +90,11 @@ version2.0:2020/8/10,重构页面，添加接口
                   width="100">
                 </el-table-column>
                 <el-table-column
+                  prop="latitude"
+                  label="LATITUDE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
                   prop="style"
                   label="STYLE"
                   width="100">
@@ -119,16 +124,7 @@ version2.0:2020/8/10,重构页面，添加接口
                   label="TOTLETILT"
                   width="100">
                 </el-table-column>
-                <el-table-column
-                  prop="enodebid"
-                  label="enodebid"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="enoedebname"
-                  label="enodeb_name"
-                  width="100">
-                </el-table-column>
+
               </el-table>
             </div>
           </el-tab-pane>
@@ -396,23 +392,36 @@ import echarts from "echarts"
           ifsearch1: false,//是否开始查询
           ifsearch2: false,//是否开始查询
           ifsearch3: false,//是否开始查询
-          tableData: [],//表格数据
+          tableData1: [{
+            azimuth: '',
+            city: '',
+            earfcn: '',
+            electtilt: '',
+            enodebid: '',
+            enodebname: '',
+            height: '',
+            latitude: '',
+            longitude: '',
+            mechtilt: '',
+            pci: '',
+            pss:'',
+            sector_id: '',
+            sector_name: '',
+            sss: '',
+            style: '',
+            tac: '',
+            totletilt: '',
+            vendor: ''
+          }],//查询1的表格数据
           s_e_date: '',//选择查询起止日期（按天）
           s_e_time:'',//选择查询起止时间（按小时）
           inputKPI:'',//输入kpi网元名称
           KPIattribute:'',//选择要查询的kpi属性
+          inputCell:'',//输入小区名字
         };
       },
 
-      mounted(){
-        let this_ = this;
-
-      },
       methods: {
-        handleCommand0(command) {
-          this.$message('选择小区 ' + command);
-          this.ifsearch0 = true;
-        },
 
         handleCommand1(command) {
           this.$message('选择基站 ' + command);
@@ -465,6 +474,43 @@ import echarts from "echarts"
 
         goBack() {
           this.$router.go(-1);
+        },
+
+        searchCell:function(){
+          var that = this
+          this.ifsearch0=true;
+          $.ajax({
+            url: "/api/cell/search_by_sector",
+            type: "GET",
+            data: {
+              keyword: this.inputCell
+            },
+            success: function (res) {
+              if (res.code != 0) {
+                alert("查询失败!code=" + res.code);
+                return;
+              }
+                that.tableData1[0].city=res.list[0][0];
+                that.tableData1[0].sector_id=res.list[0][1];
+                that.tableData1[0].sector_name=res.list[0][2];
+                that.tableData1[0].enodebid=res.list[0][3];
+                that.tableData1[0].enodebname=res.list[0][4];
+                that.tableData1[0].earfcn=res.list[0][5];
+                that.tableData1[0].pci=res.list[0][6];
+                that.tableData1[0].pss=res.list[0][7];
+                that.tableData1[0].sss=res.list[0][8];
+                that.tableData1[0].tac=res.list[0][9];
+                that.tableData1[0].vendor=res.list[0][10];
+                that.tableData1[0].longitude=res.list[0][11];
+                that.tableData1[0].latitude=res.list[0][12];
+                that.tableData1[0].style=res.list[0][13];
+                that.tableData1[0].azimuth=res.list[0][14];
+                that.tableData1[0].height=res.list[0][15];
+                that.tableData1[0].electtilt=res.list[0][16];
+                that.tableData1[0].mechtilt=res.list[0][17];
+                that.tableData1[0].totletilt=res.list[0][18];
+            }
+          })
         },
 
         drawKpiChart(x,y) {
