@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class C2InewServiceImpl implements C2InewService {
 
     @Autowired
