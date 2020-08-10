@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Service
 public class C2I3ServiceImpl implements C2I3Service {
@@ -21,5 +22,16 @@ public class C2I3ServiceImpl implements C2I3Service {
             c2I3Repository.exportC2I3(filePath);
         } catch (Exception e) {
         }
+    }
+
+    @Override
+    public List generate(double x) {
+        String sql = "Select distinct a.scell as CELL1, b.scell as CELL2, c.ncell as CELL3 " +
+                "from tbc2inew as a " +
+                "join tbc2inew as b on a.ncell=b.scell " +
+                "join tbc2inew as c on (b.ncell=c.scell and c.ncell=a.scell)" +
+                " or (b.ncell=c.ncell and c.scell=a.scell)" +
+                " where a.PrbABS6<" + x +" and b.PrbABS6<" + x + " and c.PrbABS6<"+x;
+        return  e.createNativeQuery(sql).getResultList();
     }
 }

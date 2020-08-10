@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +40,26 @@ public class C2I3Controller {
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
     }
+
+    @RequestMapping(value = "generate")
+    public ResponseEntity<String> search(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+        double x=Double.parseDouble(request.getParameter("x"));
+
+
+        //c2i3Service.generate(x);
+        result.put("list", c2i3Service.generate(x));
+        result.put("code", ErrorCode.SUCCESS.getValue());
+
+        return WebTools.buildJsonResponse(result);
+    }
+
 
 }
