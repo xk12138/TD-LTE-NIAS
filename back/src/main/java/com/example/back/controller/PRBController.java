@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +35,8 @@ public class PRBController {
     @Autowired
     CookieService cookieService;
 
+    private final static int bash = 50;
+
     private static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
     @RequestMapping(value = "import", consumes = "multipart/form-data;charset=utf-8")
@@ -44,7 +44,16 @@ public class PRBController {
     public ResponseEntity<String> importPRB(HttpServletRequest request, MultipartFile file) throws IOException {
         Map<String, Object> result = new HashMap<>();
         InputStream inputStream = file.getInputStream();
+        String xlsxPath = ApplicationConfiguration.outfileDir + "tbprb.xlsx";
+        File xlsxFile = new File(xlsxPath);
+        FileOutputStream outputStream = new FileOutputStream(xlsxFile);
+        byte[] data = new byte[1024];
+        while (inputStream.read(data) != -1) {
+            outputStream.write(data);
+        }
+        outputStream.close();
 
+        inputStream = new FileInputStream(xlsxFile);
         Workbook workbook;
         try {
             workbook = new XSSFWorkbook(inputStream);
@@ -61,16 +70,24 @@ public class PRBController {
         }
         List<PRB> prbs = new ArrayList<>();
         int rows = sheet.getLastRowNum();
-        for(int i = 1; i < rows; i++) {
+        int i;
+        for(i = 1; i < rows; i++) {
             //对于每一行都进行创建然后放入列表中
             Row row = sheet.getRow(i);
             PRB prb = getPRB(row);
             if(prb != null) {
                 prbs.add(prb);
             }
+            if(i % bash == 0) {
+                prbService.importPRB(prbs);
+                prbs.clear();
+            }
         }
-
-        prbService.importPRB(prbs);
+        if(i % bash != 0) {
+            //防止最后一批重复写入
+            prbService.importPRB(prbs);
+            prbs.clear();
+        }
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
