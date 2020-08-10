@@ -72,7 +72,7 @@ public class CellServicelmpl implements CellService {
 
     @Override
     public List<Map<String, Object>> search_by_enodeB(String keyword) {
-        String sql = "select " + "*" + " from tbCell where eNodeBID=" + keyword + " or eNodeBNAME=" + keyword +"GROUP BY SECTOR_ID";
+        String sql = "select * from tbCell where eNodeBID='" + keyword + "' or eNodeB_NAME='" + keyword +"' GROUP BY SECTOR_ID";
         return e.createNativeQuery(sql).getResultList();
     }
 
