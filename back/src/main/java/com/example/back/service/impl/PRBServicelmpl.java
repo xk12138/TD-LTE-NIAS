@@ -27,22 +27,18 @@ public class PRBServicelmpl implements PRBService {
     @Override
     @Transactional
     public void importPRB(List<PRB> prbs) {
-        int page = prbs.size() / batch;
-        for (int i = 0; i < page; i++) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("insert into tbprb ").append(PRB.toKeys()).append(" values ");
-            List<PRB> temp = prbs.subList(i * batch, (i + 1) * batch);
-            for (int j = 0; j < temp.size(); j++) {
-                PRB prb = temp.get(j);
-                stringBuilder.append(prb.toMsg());
-                if(j != temp.size() - 1) {
-                    stringBuilder.append(',');
-                }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("insert into tbprb ").append(PRB.toKeys()).append(" values ");
+        for (int j = 0; j < prbs.size(); j++) {
+            PRB prb = prbs.get(j);
+            stringBuilder.append(prb.toMsg());
+            if (j != prbs.size() - 1) {
+                stringBuilder.append(',');
             }
-            stringBuilder.append(" on duplicate key update 周期=15;");
-            System.out.println(stringBuilder.toString());
-            e.createNativeQuery(stringBuilder.toString()).executeUpdate();
         }
+        stringBuilder.append(" on duplicate key update 周期=15;");
+        System.out.println(stringBuilder.toString());
+        e.createNativeQuery(stringBuilder.toString()).executeUpdate();
     }
 
     @Override
