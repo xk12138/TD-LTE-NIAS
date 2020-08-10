@@ -1,7 +1,9 @@
 <!--author:AK
 login.vue：登陆页面
 version1.0:2020/8/1，完成构建页面并添加接口
-version1.1:2020/8/3，更改布局-->
+version1.1:2020/8/3，更改布局
+version2.1:2020/8/7，界面美化
+-->
 <template>
   <div>
     <el-container>

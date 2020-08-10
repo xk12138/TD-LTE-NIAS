@@ -87,7 +87,7 @@ public class KPIServiceImpl implements KPIService {
     @Override
     public List<Map<String, Object>> search(String keyword, String name, Date startTime, Date endTime) {
         DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-        String sql = "select " + keyword + " from tbKPI where 网元名称=\'" + name + "\' and timestampdiff(day, \'" + dateFormat.format(startTime) + "\', 起始时间)>=0 and timestampdiff(day, \'" + dateFormat.format(endTime) + "\', 起始时间)<=0";
+        String sql = "select " + keyword + ",起始时间" + " from tbKPI where 网元名称=\'" + name + "\' and timestampdiff(day, \'" + dateFormat.format(startTime) + "\', 起始时间)>=0 and timestampdiff(day, \'" + dateFormat.format(endTime) + "\', 起始时间)<=0";
         return e.createNativeQuery(sql).getResultList();
     }
 

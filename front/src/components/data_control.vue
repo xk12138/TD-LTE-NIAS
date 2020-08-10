@@ -2,6 +2,8 @@
 data_control.vue：数据控制页面
 version1.0:2020/8/3，完成构建页面，没有添加接口
 version1.1:2020/8/6，重新布局页面，完成接口
+version2.1:2020/8/7，界面美化
+version2.2:2020/8/7，修复上传MRO表按钮无响应bug
 -->
 <template>
   <el-container>
@@ -110,6 +112,7 @@ version1.1:2020/8/6，重新布局页面，完成接口
           <!--    limit是限制最多可上传文件的个数；action的地址是将文件传给后台的接口地址； -->
           <!--    fileList是选择的文件的全部信息，在事件中作为参数传进去，可以查看其内容；-->
           <el-tab-pane label="下载数据" name="second">
+
             <el-row justify="center" type="flex">
               <el-col :span="6">
                 <el-button type="success" icon="el-icon-download" @click="download(0)">加载tbCell</el-button>
@@ -130,6 +133,11 @@ version1.1:2020/8/6，重新布局页面，完成接口
               <el-col :span="6">
                 <el-button type="success" icon="el-icon-download" @click="download(3)">加载tbMRO</el-button>
                 <a href="../static/tbmro.txt" download="tbMRO.txt">下载tbMRO</a>
+              </el-col>
+
+              <el-col :span="6">
+                <el-button type="success" icon="el-icon-download" @click="download(4)">加载tbPRBnew</el-button>
+                <a href="../static/tbprbnew.txt" download="tbPRBnew.txt">下载tbPRBnew</a>
               </el-col>
 
             </el-row>
@@ -248,6 +256,9 @@ version1.1:2020/8/6，重新布局页面，完成接口
           }
           else if(x==3){
             URL = '/api/mro/export';
+          }
+          else if(x==4){
+            URL = '/api/prb/generate';
           }
           $.ajax({
             //url: '/api/kpi/export',

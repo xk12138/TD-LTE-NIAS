@@ -1,6 +1,8 @@
 <!--author:AK
 info_search.vue：信息查询页面
-version1.0:2020/8/3，完成构建页面，没有添加接口-->
+version1.0:2020/8/3，完成构建页面，没有添加接口
+version2.0:2020/8/10,重构页面，添加接口
+-->
 <template>
   <el-container>
     <el-header>
@@ -252,52 +254,80 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
             </div>
           </el-tab-pane>
           <el-tab-pane label="KPI指标信息查询" name="third">
+            <span class="demonstration">输入网元名称</span>
+            <el-input style="width: 300px"
+              placeholder="请输入网元名称"
+              v-model="inputKPI"
+              clearable>
+            </el-input>
+
             <el-dropdown @command="handleCommand2">
-      <span class="el-dropdown-link">
-        选择网元<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">testA</el-dropdown-item>
-                <el-dropdown-item command="b">testB</el-dropdown-item>
+  <span class="el-dropdown-link">
+    选择属性<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+              <el-dropdown-menu class="project-dropdown" slot="dropdown">
+                <el-dropdown-item command="周期">周期</el-dropdown-item>
+                <el-dropdown-item command="RRC连接建立完成次数">RRC连接建立完成次数</el-dropdown-item>
+                <el-dropdown-item command="RRC连接请求次数_包括重发">RRC连接请求次数_包括重发</el-dropdown-item>
+                <el-dropdown-item command="RRC建立成功率qf">RRC建立成功率qf</el-dropdown-item>
+                <el-dropdown-item command="E_RAB建立成功总次数">E_RAB建立成功总次数</el-dropdown-item>
+                <el-dropdown-item command="E_RAB建立尝试总次数">E_RAB建立尝试总次数</el-dropdown-item>
+                <el-dropdown-item command="E_RAB建立成功率">E_RAB建立成功率</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB触发的E_RAB异常释放总次数">e_nodeB触发的E_RAB异常释放总次数</el-dropdown-item>
+                <el-dropdown-item command="小区切换出E_RAB异常释放总次数">小区切换出E_RAB异常释放总次数</el-dropdown-item>
+                <el-dropdown-item command="E_RAB掉线率_新">E_RAB掉线率_新</el-dropdown-item>
+                <el-dropdown-item command="无线接通率ay">无线接通率ay</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB发起的S1_RESET导致的UE_Context释放次数">e_nodeB发起的S1_RESET导致的UE_Context释放次数</el-dropdown-item>
+                <el-dropdown-item command="UE_Context异常释放次数">UE_Context异常释放次数</el-dropdown-item>
+                <el-dropdown-item command="UE_Context建立成功总次数">UE_Context建立成功总次数</el-dropdown-item>
+                <el-dropdown-item command="无线掉线率">无线掉线率</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB内异频切换出成功次数">e_nodeB内异频切换出成功次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB内异频切换出尝试次数">e_nodeB内异频切换出尝试次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB内同频切换出成功次数">e_nodeB内同频切换出成功次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB内同频切换出尝试次数">e_nodeB内同频切换出尝试次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB间异频切换出成功次数">e_nodeB间异频切换出成功次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB间异频切换出尝试次数">e_nodeB间异频切换出尝试次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB间同频切换出成功次数">e_nodeB间同频切换出成功次数</el-dropdown-item>
+                <el-dropdown-item command="e_nodeB间同频切换出尝试次数">e_nodeB间同频切换出尝试次数</el-dropdown-item>
+                <el-dropdown-item command="eNB内切换成功率">eNB内切换成功率</el-dropdown-item>
+                <el-dropdown-item command="eNB间切换成功率">eNB间切换成功率</el-dropdown-item>
+                <el-dropdown-item command="同频切换成功率zsp">同频切换成功率zsp</el-dropdown-item>
+                <el-dropdown-item command="异频切换成功率zsp">异频切换成功率zsp</el-dropdown-item>
+                <el-dropdown-item command="切换成功率">切换成功率</el-dropdown-item>
+                <el-dropdown-item command="小区PDCP层所接收到的上行数据的总吞吐量">小区PDCP层所接收到的上行数据的总吞吐量</el-dropdown-item>
+                <el-dropdown-item command="小区PDCP层所发送的下行数据的总吞吐量">小区PDCP层所发送的下行数据的总吞吐量</el-dropdown-item>
+                <el-dropdown-item command="RRC重建请求次数">RRC重建请求次数</el-dropdown-item>
+                <el-dropdown-item command="RRC连接重建比率">RRC连接重建比率</el-dropdown-item>
+                <el-dropdown-item command="通过重建回源小区的e_nodeB间同频切换出执行成功次数">通过重建回源小区的e_nodeB间同频切换出执行成功次数</el-dropdown-item>
+                <el-dropdown-item command="通过重建回源小区的e_nodeB间异频切换出执行成功次数">通过重建回源小区的e_nodeB间异频切换出执行成功次数</el-dropdown-item>
+                <el-dropdown-item command="通过重建回源小区的e_nodeB内同频切换出执行成功次数">通过重建回源小区的e_nodeB内同频切换出执行成功次数</el-dropdown-item>
+                <el-dropdown-item command="通过重建回源小区的e_nodeB内异频切换出执行成功次数">通过重建回源小区的e_nodeB内异频切换出执行成功次数</el-dropdown-item>
+                <el-dropdown-item command="eNB内切换出成功次数">eNB内切换出成功次数</el-dropdown-item>
+                <el-dropdown-item command="eNB内切换出请求次数">eNB内切换出请求次数</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <div v-if="ifsearch2">
-              <el-table
-                :data="tableData"
-                height="400"
-                border
-                style="width: 100%">
-                <el-table-column
-                  fixed
-                  prop="网元名称"
-                  label="网元名称"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="属性1"
-                  label="属性1"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="属性2"
-                  label="属性2"
-                  width="100">
-                </el-table-column>
-              </el-table>
-              <div class="block">
-                <span class="demonstration">选择起止日期</span>
-                <el-date-picker
-                  type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  format="yyyy 年 MM 月 dd 日"
-                  value-format="yyyy-MM-dd"
-                  v-model="s_e_date">
-                </el-date-picker>
-                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart">展示结果</el-button>
-              </div>
+
+            <div class="block">
+              <span class="demonstration">选择起止日期</span>
+              <el-date-picker
+                type="daterange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                format="yyyy 年 MM 月 dd 日"
+                value-format="yyyy-MM-dd"
+                v-model="s_e_date">
+              </el-date-picker>
+              <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
             </div>
+
+            <div>
+              网元“{{inputKPI}}”在 {{s_e_date}}之间的“{{KPIattribute}}”变化情况
+            </div>
+
+
+              <div id="kpiChart" ></div>
+
 
           </el-tab-pane>
           <el-tab-pane label="PRB信息统计与查询" name="forth">
@@ -356,6 +386,7 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
 </template>
 
 <script>
+import echarts from "echarts"
     export default {
         name: "info_search",
       data(){
@@ -368,7 +399,14 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           tableData: [],//表格数据
           s_e_date: '',//选择查询起止日期（按天）
           s_e_time:'',//选择查询起止时间（按小时）
+          inputKPI:'',//输入kpi网元名称
+          KPIattribute:'',//选择要查询的kpi属性
         };
+      },
+
+      mounted(){
+        let this_ = this;
+
       },
       methods: {
         handleCommand0(command) {
@@ -383,8 +421,7 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
 
 
         handleCommand2(command) {
-          this.$message('选择网元 ' + command);
-          this.ifsearch2 = true;
+          this.KPIattribute = command;
         },
 
         handleCommand3(command) {
@@ -392,16 +429,61 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           this.ifsearch3 = true;
         },
 
-        showChart:function () {
+        showChart1:function () {
           this.$message('展示从折线图'+this.s_e_date);
         },
 
         showChart0:function () {
-          this.$message('展示从折线图'+this.s_e_time);
+          var that = this
+          var sdate = this.s_e_date.toString().split(',')[0] + " 00:00:00";//开始日期
+          var edate = this.s_e_date.toString().split(',')[1] + " 00:00:00";//结束日期
+          $.ajax({
+            url: "/api/kpi/search",
+            type: "GET",
+            data: {
+              keyword: this.KPIattribute,
+              name: this.inputKPI,
+              start_time: sdate,
+              end_time: edate,
+            },
+            success: function (res) {
+              if (res.code != 0) {
+                alert("查询失败!code=" + res.code);
+                return;
+              }
+              console.log(res)
+              var xList = [];
+              var yList = [];
+              for(let i=0; i<=res.list.length-1; i++){
+                xList.push(res.list[i][1]);
+                yList.push(res.list[i][0]);
+              }
+              that.drawKpiChart(xList,yList)
+            }
+          })
         },
 
         goBack() {
           this.$router.go(-1);
+        },
+
+        drawKpiChart(x,y) {
+          console.log(x,y);
+          let kpiChart = echarts.init(document.getElementById('kpiChart'))
+          // 绘制kpi图表
+          kpiChart.setOption({
+            tooltip: {},
+            xAxis: {
+              data: x
+            },
+            yAxis: {
+            },
+            series: [{
+              name: this.KPIattribute,
+              type: 'bar',
+              data: y,
+            }]
+          });
         }
       }
     }
@@ -428,7 +510,38 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 20px;
+    line-height: 40px;
     height: 600px;
   }
+
+  .project-dropdown{
+    height:300px;
+    overflow: auto;
+  }
+  .project-dropdown::-webkit-scrollbar
+  {
+    width: 5px;
+    height: 5px;
+    background-color: #F5F5F5;
+  }
+  .project-dropdown::-webkit-scrollbar-track
+  {
+  //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  #kpiChart{
+    width: 80%;
+    height: 350px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+
+  h2{
+    text-align: center;
+    padding: 30px;
+    font-size: 18px;
+  }
+
 </style>
