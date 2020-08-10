@@ -12,18 +12,18 @@ version2.0:2020/8/10,重构页面，添加接口
       <el-main>
         <el-tabs v-model="activeName" >
           <el-tab-pane label="小区配置信息查询" name="first">
-            <el-dropdown @command="handleCommand0">
-      <span class="el-dropdown-link">
-        选择小区<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">testA</el-dropdown-item>
-                <el-dropdown-item command="b">testB</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+
+            <span class="demonstration">输入小区名称或id</span>
+            <el-input style="width: 300px"
+                      placeholder="请输入小区名称或id"
+                      v-model="inputCell"
+                      clearable>
+            </el-input>
+            <el-button type="primary" @click="searchCell">查询小区信息</el-button>
+
             <div v-if="ifsearch0">
               <el-table
-                :data="tableData"
+                :data="tableData1"
                 height="400"
                 border
                 style="width: 100%">
@@ -34,24 +34,24 @@ version2.0:2020/8/10,重构页面，添加接口
                 </el-table-column>
                 <el-table-column
                   fixed
-                  prop="sector_id"
-                  label="SECTOR_ID"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  fixed
                   prop="sector_name"
                   label="SECTOR_NAME"
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeebid"
-                  label="ENODEEBID"
+                  fixed
+                  prop="sector_id"
+                  label="SECTOR_ID"
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeedname"
-                  label="ENODEED_NAME"
+                  prop="enodebid"
+                  label="ENODEBID"
+                  width="100">
+                </el-table-column>
+                <el-table-column
+                  prop="enodebname"
+                  label="ENODEB_NAME"
                   width="100">
                 </el-table-column>
                 <el-table-column
@@ -90,6 +90,11 @@ version2.0:2020/8/10,重构页面，添加接口
                   width="100">
                 </el-table-column>
                 <el-table-column
+                  prop="latitude"
+                  label="LATITUDE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
                   prop="style"
                   label="STYLE"
                   width="100">
@@ -119,32 +124,23 @@ version2.0:2020/8/10,重构页面，添加接口
                   label="TOTLETILT"
                   width="100">
                 </el-table-column>
-                <el-table-column
-                  prop="enodebid"
-                  label="enodebid"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="enoedebname"
-                  label="enodeb_name"
-                  width="100">
-                </el-table-column>
+
               </el-table>
             </div>
           </el-tab-pane>
           <el-tab-pane label="基站eNodeB信息查询" name="second">
-            <el-dropdown @command="handleCommand1">
-      <span class="el-dropdown-link">
-        选择基站<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">testA</el-dropdown-item>
-                <el-dropdown-item command="b">testB</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+
+            <span class="demonstration">输入EnodeB名称或id</span>
+            <el-input style="width: 300px"
+                      placeholder="请输入EnodeB名称或id"
+                      v-model="inputEnodeB"
+                      clearable>
+            </el-input>
+            <el-button type="primary" @click="searchEnodeB">查询基站信息</el-button>
+
             <div v-if="ifsearch1">
               <el-table
-                :data="tableData"
+                :data="tableData2"
                 height="400"
                 border
                 style="width: 100%">
@@ -164,12 +160,14 @@ version2.0:2020/8/10,重构页面，添加接口
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeebid"
+                  fixed
+                  prop="enodebid"
                   label="ENODEEBID"
                   width="100">
                 </el-table-column>
                 <el-table-column
-                  prop="enodeedname"
+                  fixed
+                  prop="enodebname"
                   label="ENODEED_NAME"
                   width="100">
                 </el-table-column>
@@ -209,6 +207,11 @@ version2.0:2020/8/10,重构页面，添加接口
                   width="100">
                 </el-table-column>
                 <el-table-column
+                  prop="latitude"
+                  label="LATITUDE"
+                  width="100">
+                </el-table-column>
+                <el-table-column
                   prop="style"
                   label="STYLE"
                   width="100">
@@ -236,18 +239,6 @@ version2.0:2020/8/10,重构页面，添加接口
                 <el-table-column
                   prop="totletilt"
                   label="TOTLETILT"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  fixed
-                  prop="enodebid"
-                  label="enodebid"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  fixed
-                  prop="enoedebname"
-                  label="enodeb_name"
                   width="100">
                 </el-table-column>
               </el-table>
@@ -396,30 +387,38 @@ import echarts from "echarts"
           ifsearch1: false,//是否开始查询
           ifsearch2: false,//是否开始查询
           ifsearch3: false,//是否开始查询
-          tableData: [],//表格数据
+          tableData1: [{
+            azimuth: '',
+            city: '',
+            earfcn: '',
+            electtilt: '',
+            enodebid: '',
+            enodebname: '',
+            height: '',
+            latitude: '',
+            longitude: '',
+            mechtilt: '',
+            pci: '',
+            pss:'',
+            sector_id: '',
+            sector_name: '',
+            sss: '',
+            style: '',
+            tac: '',
+            totletilt: '',
+            vendor: ''
+          }],//查询1的表格数据
+          tableData2:[],//查询2的表格数据
           s_e_date: '',//选择查询起止日期（按天）
           s_e_time:'',//选择查询起止时间（按小时）
           inputKPI:'',//输入kpi网元名称
           KPIattribute:'',//选择要查询的kpi属性
+          inputCell:'',//输入小区名字或id
+          inputEnodeB:'',//输入enodeB名字或id
         };
       },
 
-      mounted(){
-        let this_ = this;
-
-      },
       methods: {
-        handleCommand0(command) {
-          this.$message('选择小区 ' + command);
-          this.ifsearch0 = true;
-        },
-
-        handleCommand1(command) {
-          this.$message('选择基站 ' + command);
-          this.ifsearch1 = true;
-        },
-
-
         handleCommand2(command) {
           this.KPIattribute = command;
         },
@@ -465,6 +464,86 @@ import echarts from "echarts"
 
         goBack() {
           this.$router.go(-1);
+        },
+
+        searchCell:function(){
+          var that = this
+          this.ifsearch0=true;
+          $.ajax({
+            url: "/api/cell/search_by_sector",
+            type: "GET",
+            data: {
+              keyword: this.inputCell
+            },
+            success: function (res) {
+              if (res.code != 0) {
+                alert("查询失败!code=" + res.code);
+                return;
+              }
+                that.tableData1[0].city=res.list[0][0];
+                that.tableData1[0].sector_id=res.list[0][1];
+                that.tableData1[0].sector_name=res.list[0][2];
+                that.tableData1[0].enodebid=res.list[0][3];
+                that.tableData1[0].enodebname=res.list[0][4];
+                that.tableData1[0].earfcn=res.list[0][5];
+                that.tableData1[0].pci=res.list[0][6];
+                that.tableData1[0].pss=res.list[0][7];
+                that.tableData1[0].sss=res.list[0][8];
+                that.tableData1[0].tac=res.list[0][9];
+                that.tableData1[0].vendor=res.list[0][10];
+                that.tableData1[0].longitude=res.list[0][11];
+                that.tableData1[0].latitude=res.list[0][12];
+                that.tableData1[0].style=res.list[0][13];
+                that.tableData1[0].azimuth=res.list[0][14];
+                that.tableData1[0].height=res.list[0][15];
+                that.tableData1[0].electtilt=res.list[0][16];
+                that.tableData1[0].mechtilt=res.list[0][17];
+                that.tableData1[0].totletilt=res.list[0][18];
+            }
+          })
+        },
+
+        searchEnodeB:function(){
+          var that = this
+          this.ifsearch1=true;
+          $.ajax({
+            url: "/api/cell/search_by_enodeB",
+            type: "GET",
+            data: {
+              keyword: this.inputEnodeB
+            },
+            success: function (res) {
+              if (res.code != 0) {
+                alert("查询失败!code=" + res.code);
+                return;
+              }
+              for(let i=0;i<=res.list.length-1;i++){
+                that.tableData2.push({
+                  city:res.list[i][0],
+                  sector_id:res.list[i][1],
+                  city:res.list[i][0],
+                  sector_id:res.list[i][1],
+                  sector_name:res.list[i][2],
+                  enodebid:res.list[i][3],
+                  enodebname:res.list[i][4],
+                  earfcn:res.list[i][5],
+                  pci:res.list[i][6],
+                  pss:res.list[i][7],
+                  sss:res.list[i][8],
+                  tac:res.list[i][9],
+                  vendor:res.list[i][10],
+                  longitude:res.list[i][11],
+                  latitude:res.list[i][12],
+                  style:res.list[i][13],
+                  azimuth:res.list[i][14],
+                  height:res.list[i][15],
+                  electtilt:res.list[i][16],
+                  mechtilt:res.list[i][17],
+                  totletilt:res.list[i][18],
+                })
+              }
+            }
+          })
         },
 
         drawKpiChart(x,y) {
