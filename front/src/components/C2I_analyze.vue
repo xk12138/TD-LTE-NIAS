@@ -14,11 +14,10 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         3. 点击“下载tbC2Inew”进行新表tbC2Inew的下载。
       </el-aside>
       <el-main>
-        <el-input v-model="x" placeholder="请输入计算标准条数x"></el-input>
-        <el-button type="success" icon="el-icon-check" circle @click="submitX" :disabled="disabled"></el-button>
-        <el-button type="primary" icon="el-icon-edit" circle @click="editX"></el-button>
-        <el-button type="info" :disabled="!disabled" @click="analyzing">分析数据</el-button>
-        <el-button type="success" :disabled="!disabled" icon="el-icon-download" @click="download">下载tbC2Inew</el-button>
+        <el-input v-model="x" placeholder="计算标准条数6" disabled></el-input>
+<!--        <el-button type="success" icon="el-icon-check" circle @click="submitX" :disabled="disabled"></el-button>-->
+<!--        <el-button type="primary" icon="el-icon-edit" circle @click="editX"></el-button>-->
+        <el-button type="success"  icon="el-icon-download" @click="download">下载tbC2Inew</el-button>
       </el-main>
     </el-container>
   </el-container>
@@ -44,17 +43,22 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           this.disabled = false;
         },
 
-        analyzing:function(){
-          this.$message({
-            type:"success",
-            message:"分析完毕，请下载"
-          })
-        },
 
         download:function(){
-          this.$message({
-            type:"success",
-            message:"下载成功！"
+          var that = this;
+          $.ajax({
+            url: "/api/mro/generate",
+            type: "GET",
+            success: function (res) {
+              if (res.code != 0) {
+                alert("生成失败!code=" + res.code);
+                return;
+              }
+              else{
+                that.$message("分析成功，请导出表格查看")
+              }
+              console.log(res)
+            }
           })
         },
 

@@ -71,9 +71,9 @@ public class MRODataServicelmpl implements MRODataService {
                 .append(" Interfering_Sector as NECLL, ")
                 .append(" count(Lte_NcRSRP) as count, ")
                 .append(" avg(Lte_ScRSRP-Lte_NcRSRP) as C2I_Mean, ")
-                .append(" stddev(Lte_ScRSRP-Lte_NcRSRP) as C2I_Std, ")
-                .append(" from tbMROData group by Serving_Sector, Interfering_Sector")
-                .append(" having count(Lte_NcRSRP) > 6 order by count)");
+                .append(" stddev(Lte_ScRSRP-Lte_NcRSRP) as C2I_Std ")
+                .append(" from tbmrodata group by serving_sector, interfering_sector")
+                .append(" having count(lte_ncrsrp) > 6 order by count)");
 
         e.createNativeQuery(stringBuilder.toString()).executeUpdate();
 

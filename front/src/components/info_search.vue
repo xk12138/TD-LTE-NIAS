@@ -339,52 +339,147 @@ version2.0:2020/8/10,重构页面，添加接口,完成全部查询功能
 
           </el-tab-pane>
           <el-tab-pane label="PRB信息统计与查询" name="forth">
+            <span class="demonstration">输入网元名称</span>
+            <el-input style="width: 300px"
+                      placeholder="请输入网元名称"
+                      v-model="inputPRB"
+                      clearable>
+            </el-input>
+
             <el-dropdown @command="handleCommand3">
-      <span class="el-dropdown-link">
-        选择网元<i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">testA</el-dropdown-item>
-                <el-dropdown-item command="b">testB</el-dropdown-item>
+  <span class="el-dropdown-link">
+    选择属性<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+              <el-dropdown-menu class="project-dropdown" slot="dropdown">
+                <el-dropdown-item command="周期">周期</el-dropdown-item>
+                <el-dropdown-item command="第0个PRB上检测到的干扰噪声的平均值">第0个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第1个PRB上检测到的干扰噪声的平均值">第1个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第2个PRB上检测到的干扰噪声的平均值">第2个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第3个PRB上检测到的干扰噪声的平均值">第3个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第4个PRB上检测到的干扰噪声的平均值">第4个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第5个PRB上检测到的干扰噪声的平均值">第5个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第6个PRB上检测到的干扰噪声的平均值">第6个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第7个PRB上检测到的干扰噪声的平均值">第7个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第8个PRB上检测到的干扰噪声的平均值">第8个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第9个PRB上检测到的干扰噪声的平均值">第9个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第10个PRB上检测到的干扰噪声的平均值">10个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第11个PRB上检测到的干扰噪声的平均值">第11个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第12个PRB上检测到的干扰噪声的平均值">第12个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第13个PRB上检测到的干扰噪声的平均值">第13个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第140PRB上检测到的干扰噪声的平均值">第14个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第15个PRB上检测到的干扰噪声的平均值">第15个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第16个PRB上检测到的干扰噪声的平均值">第16个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第17个PRB上检测到的干扰噪声的平均值">第17个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第18个PRB上检测到的干扰噪声的平均值">第18个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第19个PRB上检测到的干扰噪声的平均值">第19个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第20个PRB上检测到的干扰噪声的平均值">第20个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第21个PRB上检测到的干扰噪声的平均值">第21个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第22个PRB上检测到的干扰噪声的平均值">第22个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第23个PRB上检测到的干扰噪声的平均值">第23个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第24个PRB上检测到的干扰噪声的平均值">第24个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第25个PRB上检测到的干扰噪声的平均值">第25个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第26个PRB上检测到的干扰噪声的平均值">第26个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第27个PRB上检测到的干扰噪声的平均值">第27个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第28个PRB上检测到的干扰噪声的平均值">第28个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第29个PRB上检测到的干扰噪声的平均值">第29个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第30个PRB上检测到的干扰噪声的平均值">第30个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第31个PRB上检测到的干扰噪声的平均值">第31个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第32个PRB上检测到的干扰噪声的平均值">第32个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第33个PRB上检测到的干扰噪声的平均值">第33个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第34个PRB上检测到的干扰噪声的平均值">第34个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第35个PRB上检测到的干扰噪声的平均值">第35个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第36个PRB上检测到的干扰噪声的平均值">第36个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第37个PRB上检测到的干扰噪声的平均值">第37个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第38个PRB上检测到的干扰噪声的平均值">第38个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第39个PRB上检测到的干扰噪声的平均值">第39个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第40个PRB上检测到的干扰噪声的平均值">第40个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第41个PRB上检测到的干扰噪声的平均值">第41个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第42个PRB上检测到的干扰噪声的平均值">第42个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第43个PRB上检测到的干扰噪声的平均值">第43个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第44个PRB上检测到的干扰噪声的平均值">第44个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第45个PRB上检测到的干扰噪声的平均值">第45个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第46个PRB上检测到的干扰噪声的平均值">第46个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第47个PRB上检测到的干扰噪声的平均值">第47个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第48个PRB上检测到的干扰噪声的平均值">第48个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第49个PRB上检测到的干扰噪声的平均值">第49个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第50个PRB上检测到的干扰噪声的平均值">第50个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第51个PRB上检测到的干扰噪声的平均值">第51个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第52个PRB上检测到的干扰噪声的平均值">第52个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第53个PRB上检测到的干扰噪声的平均值">第53个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第54个PRB上检测到的干扰噪声的平均值">第54个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第55个PRB上检测到的干扰噪声的平均值">第55个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第56个PRB上检测到的干扰噪声的平均值">第56个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第57个PRB上检测到的干扰噪声的平均值">第57个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第58个PRB上检测到的干扰噪声的平均值">第58个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第59个PRB上检测到的干扰噪声的平均值">第59个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第60个PRB上检测到的干扰噪声的平均值">第60个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第61个PRB上检测到的干扰噪声的平均值">第61个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第62个PRB上检测到的干扰噪声的平均值">第62个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第63个PRB上检测到的干扰噪声的平均值">第63个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第64个PRB上检测到的干扰噪声的平均值">第64个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第65个PRB上检测到的干扰噪声的平均值">第65个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第66个PRB上检测到的干扰噪声的平均值">第66个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第67个PRB上检测到的干扰噪声的平均值">第67个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第68个PRB上检测到的干扰噪声的平均值">第68个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第69个PRB上检测到的干扰噪声的平均值">第69个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第70个PRB上检测到的干扰噪声的平均值">第70个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第71个PRB上检测到的干扰噪声的平均值">第71个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第72个PRB上检测到的干扰噪声的平均值">第72个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第73个PRB上检测到的干扰噪声的平均值">第73个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第74个PRB上检测到的干扰噪声的平均值">第74个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第75个PRB上检测到的干扰噪声的平均值">第75个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第76个PRB上检测到的干扰噪声的平均值">第76个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第77个PRB上检测到的干扰噪声的平均值">第77个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第78个PRB上检测到的干扰噪声的平均值">第78个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第79个PRB上检测到的干扰噪声的平均值">第79个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第80个PRB上检测到的干扰噪声的平均值">第80个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第81个PRB上检测到的干扰噪声的平均值">第81个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第82个PRB上检测到的干扰噪声的平均值">第82个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第83个PRB上检测到的干扰噪声的平均值">第83个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第84个PRB上检测到的干扰噪声的平均值">第84个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第85个PRB上检测到的干扰噪声的平均值">第85个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第86个PRB上检测到的干扰噪声的平均值">第86个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第87个PRB上检测到的干扰噪声的平均值">第87个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第88个PRB上检测到的干扰噪声的平均值">第88个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第89个PRB上检测到的干扰噪声的平均值">第89个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第90个PRB上检测到的干扰噪声的平均值">第90个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第91个PRB上检测到的干扰噪声的平均值">第91个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第92个PRB上检测到的干扰噪声的平均值">第92个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第93个PRB上检测到的干扰噪声的平均值">第93个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第94个PRB上检测到的干扰噪声的平均值">第94个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第95个PRB上检测到的干扰噪声的平均值">第95个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第96个PRB上检测到的干扰噪声的平均值">第96个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第97个PRB上检测到的干扰噪声的平均值">第97个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第98个PRB上检测到的干扰噪声的平均值">第98个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+                <el-dropdown-item command="第99个PRB上检测到的干扰噪声的平均值">第99个PRB上检测到的干扰噪声的平均值</el-dropdown-item>
+
               </el-dropdown-menu>
             </el-dropdown>
-            <div v-if="ifsearch3">
-              <el-table
-                :data="tableData"
-                height="400"
-                border
-                style="width: 100%">
-                <el-table-column
-                  fixed
-                  prop="网元名称"
-                  label="网元名称"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="属性1"
-                  label="属性1"
-                  width="100">
-                </el-table-column>
-                <el-table-column
-                  prop="属性2"
-                  label="属性2"
-                  width="100">
-                </el-table-column>
-              </el-table>
-              <div class="block">
-                <span class="demonstration">选择起止时间</span>
-                <el-date-picker
-                  format="HH:mm:ss"
-                  value-format="yyyy-MM-dd-HH:mm:ss"
-                  v-model="s_e_time"
-                  type="datetimerange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期">
-                </el-date-picker>
-                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart0">展示结果</el-button>
+
+            <div class="block">
+              <span class="demonstration">选择起止日期</span>
+              <el-date-picker
+                format="HH:mm:ss"
+                value-format="yyyy-MM-dd HH"
+                v-model="s_e_time"
+                type="datetimerange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期">
+              </el-date-picker>
+              <div ref="chart">
+                <el-button type="primary" icon="el-icon-s-marketing" @click="showChart1">展示结果</el-button>
+                <el-button type="primary" @click="exportPRB">导出图表</el-button>
               </div>
             </div>
+
+            <div>
+              网元“{{inputPRB}}”在 {{s_e_time}}之间的“{{PRBattribute}}”变化情况
+            </div>
+
+            <div id="prbChart" ></div>
+
+
           </el-tab-pane>
         </el-tabs>
       </el-main>
@@ -432,7 +527,9 @@ import XLSX from "xlsx";
           s_e_time:'',//选择查询起止时间（按小时）
           inputKPI:'',//输入kpi网元名称
           KPIattribute:'',//选择要查询的kpi属性
+          PRBattribute:'',//选择要查询的网元属性
           inputCell:'',//输入小区名字或id
+          inputPRB:'',//输入网元名字
           inputEnodeB:'',//输入enodeB名字或id
         };
       },
@@ -443,8 +540,7 @@ import XLSX from "xlsx";
         },
 
         handleCommand3(command) {
-          this.$message('选择网元 ' + command);
-          this.ifsearch3 = true;
+          this.PRBattribute = command;
         },
 
         exportCell:function(){//导出小区配置信息
@@ -543,8 +639,43 @@ import XLSX from "xlsx";
           this.exportCharts(fileName, pngid);
         },
 
+        //导出prb
+        exportPRB() {
+          let pngid = "#prbChart";
+          let fileName = "prbChart";
+          this.exportCharts(fileName, pngid);
+        },
+
         showChart1:function () {
-          this.$message('展示从折线图'+this.s_e_date);
+          var that = this;
+          var stime = this.s_e_time.toString().split(',')[0] ;//开始日期和时间
+          var etime = this.s_e_time.toString().split(',')[1];//结束日期和时间
+          console.log(this.s_e_time);
+          $.ajax({
+            url: "/api/prb/search",
+            type: "GET",
+            data: {
+              keyword: this.PRBattribute,
+              name: this.inputPRB,
+              start_time: stime,
+              end_time: etime,
+            },
+            success: function (res) {
+              if (res.code != 0) {
+                alert("查询失败!code=" + res.code);
+                return;
+              }
+              console.log(res)
+              var xList = [];
+              var yList = [];
+              for(let i=0; i<=res.list.length-1; i++){
+                xList.push(res.list[i][1]);
+                yList.push(res.list[i][0]);
+              }
+              console.log(xList,yList)
+              that.drawPrbChart(xList,yList)
+            }
+          })
         },
 
         showChart0:function () {//展示KPI指标信息
@@ -678,6 +809,25 @@ import XLSX from "xlsx";
               data: y,
             }]
           });
+        },
+
+        drawPrbChart(x,y) {//画统计柱状图
+          console.log(x,y);
+          let prbChart = echarts.init(document.getElementById('prbChart'))
+          // 绘制prb图表
+          prbChart.setOption({
+            tooltip: {},
+            xAxis: {
+              data: x
+            },
+            yAxis: {
+            },
+            series: [{
+              name: this.PRBattribute,
+              type: 'bar',
+              data: y,
+            }]
+          });
         }
       }
     }
@@ -726,6 +876,13 @@ import XLSX from "xlsx";
   }
 
   #kpiChart{
+    width: 80%;
+    height: 350px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+
+  #prbChart{
     width: 80%;
     height: 350px;
     border: 1px solid black;

@@ -181,7 +181,7 @@ public class PRBServicelmpl implements PRBService {
     @Override
     public List search(String keyword, String name, Date startTime, Date endTime) {
         DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-        String sql = "select " + keyword + " from tbPRBnew where 网元名称=\'" + name + "\' and timestampdiff(hour, \'" + dateFormat.format(startTime) + "\', 起始时间)>=0 and timestampdiff(hour, \'" + dateFormat.format(endTime) + "\', 起始时间)<=0";
+        String sql = "select " + keyword + ",起始时间" + " from tbPRBnew where 网元名称=\'" + name + "\' and timestampdiff(hour, \'" + dateFormat.format(startTime) + "\', 起始时间)>=0 and timestampdiff(hour, \'" + dateFormat.format(endTime) + "\', 起始时间)<=0";
         return e.createNativeQuery(sql).getResultList();
     }
 
