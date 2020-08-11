@@ -102,10 +102,10 @@ public class MRODataServicelmpl implements MRODataService {
     @Override
     public List<Map<String, Object>> search() {
         String sql = "select Serving_Sector,Interfering_Sector,count(Lte_NcRSRP) as count," +
-                "avg(Lte_ScRSRP-Lte_NcRSRP) as mean, stddev(Lte_ScRSRP-Lte_NcRSRP) as std " +
-                "from tbMROData" +
-                "group by Serving_Sector, Interfering_Sector" +
-                "having count(Lte_NcRSRP) > 1000 order by count";
+                " avg(Lte_ScRSRP-Lte_NcRSRP) as mean, stddev(Lte_ScRSRP-Lte_NcRSRP) as std " +
+                " from tbMROData" +
+                " group by Serving_Sector, Interfering_Sector" +
+                " having count(Lte_NcRSRP) > 1000 order by count";
         return e.createNativeQuery(sql).getResultList();
     }
 
