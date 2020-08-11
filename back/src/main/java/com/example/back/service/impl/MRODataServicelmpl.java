@@ -1,15 +1,20 @@
 package com.example.back.service.impl;
 
+import com.example.back.model.C2Inew;
 import com.example.back.model.MROData;
+import com.example.back.repository.C2InewRepository;
 import com.example.back.repository.MRODataRepository;
 import com.example.back.service.MRODataService;
+import org.apache.commons.math3.distribution.NormalDistribution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.apache.commons.math3.distribution.NormalDistribution;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MRODataServicelmpl implements MRODataService {
@@ -18,6 +23,8 @@ public class MRODataServicelmpl implements MRODataService {
 
     @Autowired
     MRODataRepository mrodataRepository;
+    @Autowired
+    C2InewRepository c2InewRepository;
     @PersistenceContext
     private EntityManager e;
 
@@ -52,4 +59,54 @@ public class MRODataServicelmpl implements MRODataService {
         } catch (Exception e) {
         }
     }
+
+    @Override
+    @Transactional
+    public void generate() {
+
+        e.createNativeQuery("drop table if exists tbC2Inew").executeUpdate();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("create table if not exists tbC2Inew ( select ")
+                .append(" Serving_Sector as SECLL, ")
+                .append(" Interfering_Sector as NECLL, ")
+                .append(" count(Lte_NcRSRP) as count, ")
+                .append(" avg(Lte_ScRSRP-Lte_NcRSRP) as C2I_Mean, ")
+                .append(" stddev(Lte_ScRSRP-Lte_NcRSRP) as C2I_Std, ")
+                .append(" from tbMROData group by Serving_Sector, Interfering_Sector")
+                .append(" having count(Lte_NcRSRP) > 6 order by count)");
+
+        e.createNativeQuery(stringBuilder.toString()).executeUpdate();
+
+        List<C2Inew> dataList = c2InewRepository.findAll();
+        NormalDistribution d;
+        Float amean, astd;
+        for (C2Inew c2Inew : dataList) {
+            amean = c2Inew.getC2I_Mean();
+            astd =  c2Inew.getC2I_Std();
+            d = new NormalDistribution(amean, astd);
+            c2Inew.setPrC2I9((float)d.cumulativeProbability(9));
+            c2Inew.setPrbABS6((float)(d.cumulativeProbability(6)+d.cumulativeProbability(-6)));
+        }
+        c2InewRepository.saveAll(dataList);
+        e.createNativeQuery(stringBuilder.toString()).executeUpdate();
+    }
+
+    @Override
+    public void exportC2Inew(String filePath) {
+        try {
+            c2InewRepository.exportC2Inew(filePath);
+        } catch (Exception e) {
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> search() {
+        String sql = "select Serving_Sector,Interfering_Sector,count(Lte_NcRSRP) as count," +
+                "avg(Lte_ScRSRP-Lte_NcRSRP) as mean, stddev(Lte_ScRSRP-Lte_NcRSRP) as std " +
+                "from tbMROData" +
+                "group by Serving_Sector, Interfering_Sector" +
+                "having count(Lte_NcRSRP) > 1000 order by count";
+        return e.createNativeQuery(sql).getResultList();
+    }
+
 }

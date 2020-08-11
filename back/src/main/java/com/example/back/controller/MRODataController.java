@@ -5,6 +5,7 @@ import com.example.back.common.ErrorCode;
 import com.example.back.common.WebTools;
 import com.example.back.config.ApplicationConfiguration;
 import com.example.back.model.MROData;
+import com.example.back.service.CookieService;
 import com.example.back.service.MRODataService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -33,6 +34,8 @@ public class MRODataController {
 
     @Autowired
     MRODataService mrodataService;
+    @Autowired
+    CookieService cookieService;
 
     @RequestMapping(value = "import", consumes = "multipart/form-data;charset=utf-8")
     @CrossOrigin
@@ -83,6 +86,28 @@ public class MRODataController {
         if(!file.exists()) {
             mrodataService.exportMRO(filePath);
         }
+
+        result.put("code", ErrorCode.SUCCESS.getValue());
+        return WebTools.buildJsonResponse(result);
+    }
+    @RequestMapping(value = "generate")
+    public ResponseEntity<String> generate(HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<>();
+
+        int userId = cookieService.getUserIdByCookie(request.getCookies());
+        if(userId == 0) {
+            result.put("code", ErrorCode.UNAVAILABLE_COOKIE.getValue());
+            return WebTools.buildJsonResponse(result);
+        }
+
+
+        String filePath = ApplicationConfiguration.outfileDir + "tbc2inew.txt";
+        File file = new File(filePath);
+        if(!file.exists()) {
+            mrodataService.generate();
+            mrodataService.exportC2Inew(filePath);
+        }
+
 
         result.put("code", ErrorCode.SUCCESS.getValue());
         return WebTools.buildJsonResponse(result);
