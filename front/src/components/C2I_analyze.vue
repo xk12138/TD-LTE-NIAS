@@ -17,7 +17,8 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         <el-input v-model="x" placeholder="计算标准条数6" disabled></el-input>
 <!--        <el-button type="success" icon="el-icon-check" circle @click="submitX" :disabled="disabled"></el-button>-->
 <!--        <el-button type="primary" icon="el-icon-edit" circle @click="editX"></el-button>-->
-        <el-button type="success"  icon="el-icon-download" @click="download">下载tbC2Inew</el-button>
+        <el-button type="success"  icon="el-icon-download" @click="generate">生成tbC2Inew</el-button>
+        <a href="../static/tbc2inew.txt" download="tbC2Inew.txt">下载tbC2Inew</a>
       </el-main>
     </el-container>
   </el-container>
@@ -44,7 +45,7 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
         },
 
 
-        download:function(){
+        generate:function(){
           var that = this;
           $.ajax({
             url: "/api/mro/generate",
@@ -57,10 +58,24 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
               else{
                 that.$message("分析成功，请导出表格查看")
               }
-              console.log(res)
             }
           })
         },
+
+        // download:function(){
+        //   var that = this;
+        //   $.ajax({
+        //     url:"api/c2i/export",
+        //     type:"GET",
+        //     success:function(res){
+        //       if(res.code!=0){
+        //         alert("下载失败！code=" + res.code);
+        //         return;
+        //       }
+        //       console.log(res);
+        //   }
+        //   })
+        // },
 
         goBack() {
           this.$router.go(-1);

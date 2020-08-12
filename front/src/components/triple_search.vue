@@ -26,11 +26,10 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
           <el-table
             id="table"
             :data="tableData"
-            height="300px"
-            :row-style="{height:'40px'}"
+            height="450px"
             border
+            :row-style="{height: '40px'}"
             style="width: 100%"
-            class="el-table_header"
           >
             <el-table-column
               prop="cell1"
@@ -154,7 +153,7 @@ version1.0:2020/8/3，完成构建页面，没有添加接口-->
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 60px;
     height: 600px;
   }
   .el-aside {

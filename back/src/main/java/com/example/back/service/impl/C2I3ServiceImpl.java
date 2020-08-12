@@ -31,7 +31,7 @@ public class C2I3ServiceImpl implements C2I3Service {
                 "join tbc2inew as b on a.ncell=b.scell " +
                 "join tbc2inew as c on (b.ncell=c.scell and c.ncell=a.scell)" +
                 " or (b.ncell=c.ncell and c.scell=a.scell)" +
-                " where a.PrbABS6<" + x +" and b.PrbABS6<" + x + " and c.PrbABS6<"+x;
+                " where a.PrbABS6>=" + x +" and b.PrbABS6>=" + x + " and c.PrbABS6>="+x;
         return  e.createNativeQuery(sql).getResultList();
     }
 }
