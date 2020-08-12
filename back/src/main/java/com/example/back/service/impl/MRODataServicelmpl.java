@@ -67,13 +67,13 @@ public class MRODataServicelmpl implements MRODataService {
         e.createNativeQuery("drop table if exists tbC2Inew").executeUpdate();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("create table if not exists tbC2Inew ( select ")
-                .append(" Serving_Sector as SECLL, ")
-                .append(" Interfering_Sector as NECLL, ")
+                .append(" Serving_Sector as SCELL, ")
+                .append(" Interfering_Sector as NCELL, ")
                 .append(" count(Lte_NcRSRP) as count, ")
                 .append(" avg(Lte_ScRSRP-Lte_NcRSRP) as C2I_Mean, ")
-                .append(" stddev(Lte_ScRSRP-Lte_NcRSRP) as C2I_Std ")
-                .append(" from tbmrodata group by serving_sector, interfering_sector")
-                .append(" having count(lte_ncrsrp) > 6 order by count)");
+                .append(" stddev(Lte_ScRSRP-Lte_NcRSRP) as C2I_Std, 0.001 as PrC2I9, 0.001 as PrbABS6 ")
+                .append(" from tbMROData group by Serving_Sector, Interfering_Sector ")
+                .append(" having count(Lte_NcRSRP) > 6 order by count ) ");
 
         e.createNativeQuery(stringBuilder.toString()).executeUpdate();
 
@@ -85,7 +85,7 @@ public class MRODataServicelmpl implements MRODataService {
             astd =  c2Inew.getC2I_Std();
             d = new NormalDistribution(amean, astd);
             c2Inew.setPrC2I9((float)d.cumulativeProbability(9));
-            c2Inew.setPrbABS6((float)(d.cumulativeProbability(6)+d.cumulativeProbability(-6)));
+            c2Inew.setPrbABS6((float)d.cumulativeProbability(6));
         }
         c2InewRepository.saveAll(dataList);
         e.createNativeQuery(stringBuilder.toString()).executeUpdate();
